@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "cd31d5a1-3c03-4bde-bb73-f2f2ffc069b7",
+		"name": "Restaurante API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"JULIAN DAVID\",\r\n    \"correo\": \"julianbenjumeavelez85@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/usuarios",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n      \"_id\": \"6247923a1216454785a13d5b\",\r\n            \"nombre\": \"JULIAN DAVID\",\r\n            \"correo\": \"julianbenjumeavelez85@gmail.com\",\r\n            \"universidad\":\"Universidad de Medellín\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios/6247923a1216454785a13d5b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"6247923a1216454785a13d5b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/usuarios/6247923a1216454785a13d5b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"6247923a1216454785a13d5b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/usuarios/62479adfe395e8c9765af0f7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"62479adfe395e8c9765af0f7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

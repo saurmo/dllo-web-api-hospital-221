@@ -10,7 +10,7 @@
 
 ## 1. Citas de pacientes
 - [Maestro] Pacientes 
-- [Maestro] Tipos de citas (General, Cirujia)
+- [Maestro] Tipos de citas (General, Cirugia)
 - [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita)
 
 ## 2. Turnos de empleados
