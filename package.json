@@ -15,7 +15,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/saurmo/desarrollo-web-frontend/issues"
-  },
+  }, 
   "homepage": "https://github.com/saurmo/desarrollo-web-frontend#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
