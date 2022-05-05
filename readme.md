@@ -10,9 +10,29 @@
 
 ## 1. Citas de pacientes
 (Juan diego )
-- [Maestro] Pacientes 
-- [Maestro] Tipos de citas (General, Cirugia)
-- [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita)
+- [Maestro] Pacientes:
+        Patient
+            idPatient
+            name
+            lastname
+            blodType
+            cellphone
+            addres
+            mail
+            gender
+            clinicHistory
+- [Maestro] Tipos de citas (General, Cirugia):
+        Appointments:
+            idAppointments:
+            Patient
+            Nurse
+            Time
+            ConsultingRoom
+            AppointmentType
+- [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita):
+        Appointment_type:
+            idAppointmentType
+            name
 
 ## 2. Turnos de empleados
 (Cindy)
