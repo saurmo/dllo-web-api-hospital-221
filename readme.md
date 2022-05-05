@@ -21,6 +21,11 @@
 ## 3. Hospitalización de pacientes
 - [Maestro] Salas
 - [Maestro] Consultorios (Piso, Sala)
+       {
+        "idConsultingRoom":"STRING"
+        "hall":"integer"
+        "availability":"boolean"
+        }
 - [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
 
 ## 4. Facturación a pacientes
