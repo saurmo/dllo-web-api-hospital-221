@@ -6,7 +6,7 @@ const router = express.Router()
 const auth_ctr = require("../controllers/auth.controller")
 const { verificarPeticion } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
-const entrance_ctr = require("../controllers/entrance.controller")
+const clinicHistory_ctr = require("../controllers/clinicHistory.controller")
 
 const vs = "/api/v1"
 
@@ -16,11 +16,11 @@ router.get(`/`, (req, res)=>{
 
 router.use(verificarPeticion)
 
-router.get(vs + "/entrance", entrance_ctr.getLogin)
-    .put(vs + "/entrance/:id", entrance_ctr.updateLogin)
-    .get(vs + "/entrance/:id", entrance_ctr.getLogins)
-    .delete(vs + "/entrance/:id", entrance_ctr.deleteLogin)
-    .post(vs + "/entrance", entrance_ctr.createLogin)
+router.get(vs + "/clinicHistory", clinicHistory_ctr.getLogin)
+    .put(vs + "/clinicHistory/:id", clinicHistory_ctr.updateLogin)
+    .get(vs + "/clinicHistory/:id", clinicHistory_ctr.getLogins)
+    .delete(vs + "/clinicHistory/:id", clinicHistory_ctr.deleteLogin)
+    .post(vs + "/clinicHistory", clinicHistory_ctr.createLogin)
 
 router.use(verificarPeticion)
 

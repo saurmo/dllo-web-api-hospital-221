@@ -22,6 +22,12 @@
 - [Maestro] Salas
 - [Maestro] Consultorios (Piso, Sala)
 - [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
+{
+    "idPaciente"
+    "idConsultingRoom"
+    "medicinesOrder"
+    "laboratoryOrder"
+}
 
 ## 4. Facturación a pacientes
 - [Maestro] Medicamentos
