@@ -30,8 +30,24 @@
 
 ## 5. Alimentación de pacientes
 - [Maestro] Habitaciones (Piso, Sala)
+    - id(Mongo)
+	- room-code
+	- room-number
+	- id-hall
+
 - [Maestro] Tipos de alimentación
+    - id(Mongo)
+	- nutrition-code	
+	- name
+	- description
+	- periodicity
+
 - [Formulario] Registro de alimentación (Paciente, habitación)
+    - id(Mongo)
+	- pacient-identification
+	- room-code
+	- nutrition-code 
+	- comments
 
 
 
