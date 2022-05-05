@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 const auth_ctr = require("../controllers/auth.controller")
-const { verificarPeticion } = require('../middlewares/token.middleware')
+const { requestValid } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
 const consultingRooms_ctr = require("../controllers/consultingRooms.controller")
 
@@ -15,7 +15,7 @@ router.get(`/`, (req, res)=>{
     res.send("Proyecto de aula Hospital")
 })
 
-router.use(verificarPeticion)
+router.use(requestValid)
 
 router.get(vs + "/consultingRooms", consultingRooms_ctr.consultingRooms_ctr)
     .put(vs + "/consultingRooms/:id", consultingRoom_ctr.updateConsultingRoom)
