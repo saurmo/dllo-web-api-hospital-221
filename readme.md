@@ -19,7 +19,13 @@
 - [Formulario] Turnos (Empleado, Consultorio )
 
 ## 3. Hospitalización de pacientes
-- [Maestro] Salas
+- [Maestro] Salas{
+    "idHall":"integer"
+    "Piso": "integer"
+    "Halltype": "string"
+    "block": "ineger"
+
+}
 - [Maestro] Consultorios (Piso, Sala)
 - [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
 
