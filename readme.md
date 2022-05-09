@@ -33,10 +33,25 @@
 - [Formulario] Facturación (Cita y/o medicamentos y/o procedimientos, Paciente)
 
 ## 5. Alimentación de pacientes
-(Jessica)
-- [Maestro] Habitaciones (Piso, Sala)
-- [Maestro] Tipos de alimentación
-- [Formulario] Registro de alimentación (Paciente, habitación)
+- [Maestro] rooms
+    - id(Mongo)
+	- room-code
+	- room-number
+	- id-hall
+
+- [Maestro] nutrition-types
+    - id(Mongo)
+	- nutrition-code	
+	- name
+	- description
+	- periodicity
+
+- [Formulario] nutrition-registry
+    - id(Mongo)
+	- pacient-identification
+	- room-code
+	- nutrition-code 
+	- comments
 
 
 
