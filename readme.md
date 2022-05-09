@@ -29,8 +29,26 @@
 ## 4. Facturación a pacientes
 (Esteban)
 - [Maestro] Medicamentos
+-   -idMedicament
+-   -medicamentName
+-   -concentration
+-   -quantity
+-   -price
+-   -activeBin
 - [Maestro] Instrumentos médicos
+-   -idMedicalInstrument
+-   -instrumentName
+-   -quantity
+-   -price
+-   -activeBin-   
 - [Formulario] Facturación (Cita y/o medicamentos y/o procedimientos, Paciente)
+-   -idFacture
+-   -idMedicament
+-   -idMedicalInstrument
+-   -idPatient
+-   -idclinicHistory
+-   -accountStatus
+-   -total
 
 ## 5. Alimentación de pacientes
 - [Maestro] rooms
