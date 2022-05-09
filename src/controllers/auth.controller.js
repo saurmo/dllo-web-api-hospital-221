@@ -1,48 +1,45 @@
-const { compararHash } = require("../services/bcrypt.service")
-const { crearToken } = require("../services/jwt.service")
-const { leerDocumento } = require("../services/mongodb.service")
+const { hashIsEqualsToData } = require("../services/bcrypt.service")
+const { createToken } = require("../services/jwt.service")
+const { getDocument } = require("../services/mongodb.service")
 
 
 const login = async (req, res) => {
-    let respuesta = {}
+    let responseData = {}
     try {
-        const credenciales = req.body
+        const data = req.body
 
-        const usuario = await leerDocumento("usuarios", { correo: credenciales.correo })
-        if (usuario) {
+        const user = await getDocument("usuarios", { correo: data.correo })
+        if (user) {
 
-            const claveEsIgual = compararHash(credenciales.clave, usuario.clave)
-            if (claveEsIgual == true) {
+            const passwordValid = hashIsEqualsToData(data.clave, user.clave)
+            if (passwordValid == true) {
                 // Eliminar información sensible 
-
-                delete usuario.correo
-                delete usuario.clave
-
-                const token = crearToken(usuario)
-
-                respuesta.ok = true
-                respuesta.message = "Bienvenido"
-                respuesta.info = { ...usuario, token }
-                res.send(respuesta)
+                delete user.correo
+                delete user.clave
+                const token = createToken(user)
+                responseData.ok = true
+                responseData.message = "Bienvenido."
+                responseData.info = { ...user, token }
+                res.send(responseData)
             } else {
-                respuesta.ok = false
-                respuesta.message = "Clave incorrecta"
-                respuesta.info = null
-                res.send(respuesta)
+                responseData.ok = false
+                responseData.message = "Clave incorrecta"
+                responseData.info = null
+                res.send(responseData)
             }
         }  else {
-            respuesta.ok = false
-            respuesta.message = "Usuario no existe."
-            respuesta.info = null
-            res.send(respuesta)
+            responseData.ok = false
+            responseData.message = "Usuario no existe."
+            responseData.info = null
+            res.send(responseData)
         }
 
     } catch (error) {
         console.error(error);
-        respuesta.ok = false
-        respuesta.message = "Ha ocurrido un error realizando login"
-        respuesta.info = error
-        res.status(500).send(respuesta)
+        responseData.ok = false
+        responseData.message = "Ha ocurrido un error realizando login"
+        responseData.info = error
+        res.status(500).send(responseData)
     }
 
 
