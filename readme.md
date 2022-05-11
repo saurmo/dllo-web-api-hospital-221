@@ -9,11 +9,6 @@
 5. Alimentación de pacientes
 
 ## 1. Citas de pacientes
-<<<<<<< HEAD
-- [Maestro] Pacientes 
-- [Maestro] Tipos de citas (General, Cirugia)
-- [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita)
-=======
 (Juan diego )
 - [Maestro] Pacientes:
         *  Patient
@@ -38,7 +33,6 @@
         * Appointment_type:
             * idAppointmentType
             * name
->>>>>>> 6483a3c4e15121a1e311e43c810a8f69f75f6e09
 
 ## 2. Turnos de empleados
 - [Maestro] Roles (Médico, enfermera auxiliar, enfermera jefe, administrativos, servicios )
@@ -79,11 +73,6 @@
 -   -total
 
 ## 5. Alimentación de pacientes
-<<<<<<< HEAD
-- [Maestro] Habitaciones (Piso, Sala)
-- [Maestro] Tipos de alimentación
-- [Formulario] Registro de alimentación (Paciente, habitación)
-=======
 - [Maestro] rooms
     - id(Mongo)
 	- room-code
@@ -103,7 +92,6 @@
 	- room-code
 	- nutrition-code 
 	- comments
->>>>>>> 6483a3c4e15121a1e311e43c810a8f69f75f6e09
 
 
 
