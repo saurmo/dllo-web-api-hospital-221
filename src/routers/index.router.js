@@ -3,7 +3,7 @@ const express = require('express')
 
 const router = express.Router()
 
-const auth_ctr = require("../controllers/auth.controller")
+const auth_ctr = require("../controllers/auth/auth.controller")
 const { requestValid } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
 
