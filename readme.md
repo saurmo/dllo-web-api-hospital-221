@@ -49,7 +49,13 @@
 
 }
 - [Maestro] Consultorios (Piso, Sala)
-- [Formulario] Ingreso - HC (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
+- [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
+{
+    "idPaciente"
+    "idConsultingRoom"
+    "medicinesOrder"
+    "laboratoryOrder"
+}
 
 ## 4. Facturación a pacientes
 (Esteban)
