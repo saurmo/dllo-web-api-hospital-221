@@ -55,5 +55,6 @@ const updateConsultingRoom = async (req, res) => {
   };
 
 module.exports = {
+  
    getConsultingRoom,getConsultingRooms,deleteConsultingRoom,updateConsultingRoom,createConsultingRoom
 }
