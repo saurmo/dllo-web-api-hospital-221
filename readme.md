@@ -9,11 +9,13 @@
 5. Alimentación de pacientes
 
 ## 1. Citas de pacientes
+(Juan diego )
 - [Maestro] Pacientes 
 - [Maestro] Tipos de citas (General, Cirugia)
 - [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita)
 
 ## 2. Turnos de empleados
+(Cindy)
 - [Maestro] Roles (Médico, enfermera auxiliar, enfermera jefe, administrativos, servicios )
 - [Maestro] Empleados (Rol)
 - [Formulario] Turnos (Empleado, Consultorio )
@@ -27,14 +29,16 @@
 
 }
 - [Maestro] Consultorios (Piso, Sala)
-- [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
+- [Formulario] Ingreso - HC (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
 
 ## 4. Facturación a pacientes
+(Esteban)
 - [Maestro] Medicamentos
 - [Maestro] Instrumentos médicos
 - [Formulario] Facturación (Cita y/o medicamentos y/o procedimientos, Paciente)
 
 ## 5. Alimentación de pacientes
+(Jessica)
 - [Maestro] Habitaciones (Piso, Sala)
 - [Maestro] Tipos de alimentación
 - [Formulario] Registro de alimentación (Paciente, habitación)
