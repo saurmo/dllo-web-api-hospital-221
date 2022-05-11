@@ -35,12 +35,12 @@
             * name
 
 ## 2. Turnos de empleados
-(Cindy)
 - [Maestro] Roles (Médico, enfermera auxiliar, enfermera jefe, administrativos, servicios )
 - [Maestro] Empleados (Rol)
 - [Formulario] Turnos (Empleado, Consultorio )
 
 ## 3. Hospitalización de pacientes
+
 - [Maestro] Salas{
     "idHall":"integer"
     "Piso": "integer"
@@ -49,6 +49,11 @@
 
 }
 - [Maestro] Consultorios (Piso, Sala)
+       {
+        "idConsultingRoom":"STRING"
+        "hall":"integer"
+        "availability":"boolean"
+        }
 - [Formulario] Ingreso (Paciente, Consultorio, ordenes de medicamentos, ordenes de laboratorios )
 {
     "idPaciente"
@@ -58,7 +63,6 @@
 }
 
 ## 4. Facturación a pacientes
-(Esteban)
 - [Maestro] Medicamentos
 -   -idMedicament
 -   -medicamentName
