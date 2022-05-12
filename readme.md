@@ -10,9 +10,29 @@
 
 ## 1. Citas de pacientes
 (Juan diego )
-- [Maestro] Pacientes 
-- [Maestro] Tipos de citas (General, Cirugia)
-- [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita)
+- [Maestro] Pacientes:
+        *  Patient
+            * idPatient
+            * name
+            * lastname
+            * blodType
+            * cellphone
+            * addres
+            * mail
+            * gender
+            * idClinicHistory
+- [Maestro] Tipos de citas (General, Cirugia):
+        * Appointments:
+            * idAppointments:
+            * idPatient
+            * Nurse
+            * Time
+            * ConsultingRoom
+            * AppointmentType
+- [Formulario] Citas (Paciente, Medico, Consultorio, Tipo de cita):
+        * Appointment_type:
+            * idAppointmentType
+            * name
 
 ## 2. Turnos de empleados
 (Cindy)
@@ -29,8 +49,26 @@
 ## 4. Facturación a pacientes
 (Esteban)
 - [Maestro] Medicamentos
+-   -idMedicament
+-   -medicamentName
+-   -concentration
+-   -quantity
+-   -price
+-   -activeBin
 - [Maestro] Instrumentos médicos
+-   -idMedicalInstrument
+-   -instrumentName
+-   -quantity
+-   -price
+-   -activeBin-   
 - [Formulario] Facturación (Cita y/o medicamentos y/o procedimientos, Paciente)
+-   -idFacture
+-   -idMedicament
+-   -idMedicalInstrument
+-   -idPatient
+-   -idclinicHistory
+-   -accountStatus
+-   -total
 
 ## 5. Alimentación de pacientes
 - [Maestro] rooms
