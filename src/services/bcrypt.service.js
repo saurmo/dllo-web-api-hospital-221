@@ -1,14 +1,14 @@
 
 const bcrypt = require('bcrypt');
 
-const crearHash = (clave) => {
-  return bcrypt.hashSync(clave, 12)
+const createHash = (data) => {
+  return bcrypt.hashSync(data, 12)
 }
 
 
-const compararHash = (clave, hash) => {
-  return bcrypt.compareSync(clave, hash)
+const hashIsEqualsToData = (data, hash) => {
+  return bcrypt.compareSync(data, hash)
 }
 
 
-module.exports = { compararHash, crearHash }
+module.exports = { hashIsEqualsToData, createHash }

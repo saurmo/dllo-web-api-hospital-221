@@ -1,16 +1,13 @@
-const { verificarToken } = require("../services/jwt.service")
+const { verifyToken } = require("../services/jwt.service")
 
 
 
-const verificarPeticion = (req, res, next) => {
-
+const requestValid = (req, res, next) => {
     try {
-
         const token = req.headers.token
-
         if (token) {
-            const tokenVerificado = verificarToken(token)
-            if (tokenVerificado === true) {
+            const tokenIsValid = verifyToken(token)
+            if (tokenIsValid === true) {
                 next()
             } else {
                 return res.status(401).send({ ok: false, info: null, message: "Token no válido" })
@@ -25,4 +22,4 @@ const verificarPeticion = (req, res, next) => {
     }
 }
 
-module.exports = { verificarPeticion }
+module.exports = { requestValid }
