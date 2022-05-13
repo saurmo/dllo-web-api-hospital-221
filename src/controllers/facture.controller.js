@@ -1,7 +1,7 @@
 const { response } = require('express');
-const {getFactures, createFacture, updateFacture, getFacture} = require('../services/facture.mongodb.service');
+const { getFactures, createFacture, updateFacture, getFacture, deleteFacture } = require('../services/facture.mongodb.service');
 
-const getBills = async (req,res) =>{
+const getBills = async (req, res) => {
     let response = {}
     try {
         response.ok = true;
@@ -25,7 +25,7 @@ const getBill = async (req, res) => {
         let _id = req.params["id"];
         response.ok = true;
         response.message = "Bill consulted correctly";
-        let result = await getFacture('facturacion', {_id});
+        let result = await getFacture('facturacion', { _id });
         console.log(result);
         response.info = result;
         res.send(response);
@@ -45,7 +45,7 @@ const createBill = async (req, res) => {
         response.ok = true;
         response.message = "Bill created correctly";
         let information = req.body;
-        let result = await createFacture('facturacion',information);
+        let result = await createFacture('facturacion', information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -66,7 +66,7 @@ const updateBill = async (req, res) => {
         response.ok = true;
         response.message = "Facture updated successfully";
         let information = req.body;
-        let result = await updateFacture('facturacion', {_id}, information);
+        let result = await updateFacture('facturacion', { _id }, information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -81,9 +81,32 @@ const updateBill = async (req, res) => {
     }
 }
 
+const deleteBill = async (req, res) => {
+    let response = {}
+    try {
+        let _id = req.params["id"];
+        response.ok = true;
+        response.message = "Facture deleted successfully";
+        let information = req.body;
+        let result = await deleteFacture('facturacion', {_id}, information);
+        console.log(result);
+        response.info = result;
+        response.data = information;
+        res.send(response);
+
+    } catch (error) {
+        response.ok = false;
+        response.message = "An error has occurred deleting the bills";
+        console.log(error);
+        response.info = error;
+        res.status(500).send(response);
+    }
+}
+
 module.exports = {
     getBills,
     getBill,
     createBill,
-    updateBill
+    updateBill,
+    deleteBill
 }

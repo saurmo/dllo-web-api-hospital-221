@@ -73,7 +73,7 @@ const createFacture = async (collection, data) => {
   return await collectionDB.insertOne(data)
 }
 
-const deleteDocument = async (collection, filter) => {
+const deleteFacture = async (collection, filter) => {
   getFilter(filter)
   let db = await connectDB()
   let collectionDB = db.collection(collection)
@@ -87,4 +87,4 @@ const updateFacture = async (collection, filter, data) => {
   return await collectionDB.replaceOne(filter, data)
 }
 
-module.exports = { createFacture, updateFacture, deleteDocument, getFactures, getFacture }
+module.exports = { createFacture, updateFacture, deleteFacture, getFactures, getFacture }

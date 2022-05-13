@@ -15,6 +15,7 @@ router.get(vs + '/factures/', facture_controller.getBills);
 router.get(vs + '/factures/:id', facture_controller.getBill);
 router.post(vs + '/factures/', facture_controller.createBill);
 router.put(vs + '/factures/:id', facture_controller.updateBill);
+router.delete(vs + '/factures/:id', facture_controller.deleteBill);
 
 //router.use(requestValid)
 
