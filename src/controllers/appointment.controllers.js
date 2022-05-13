@@ -1,4 +1,4 @@
-const { ReadDocAppointments, ReadsDocAppointments, CreateDocAppointments, UpdateDocAppointments, DeleteDocAppointments } = require("../services/Appointment.service")
+const { ReadDocAppointments, ReadsDocAppointments, CreateDocAppointments, UpdateDocAppointments, DeleteDocAppointments } = require("../services/appointment.service")
 
 const ReadAppointments = async (req, res) => {
     let response = {}

@@ -1,5 +1,5 @@
 const express = require('express')
-const { CreateAppointments, ReadAppointments, ReadsAppointments, UpdateAppointments, DeleteAppointments } = require("../controllers/Appointment.controller");
+const { CreateAppointments, ReadAppointments, ReadsAppointments, UpdateAppointments, DeleteAppointments } = require("../controllers/appointment.controllers");
 
 const { verificarPeticion } = require('../middlewares/token.middleware')
 
