@@ -1,60 +1,125 @@
-// Importar los servicio
-const { leerDocumentos, agregarDocumento, modificarDocumento,
-    eliminarDocumento } = require('../services/mongodb.service');
+// Services import
+const consultingRoomsServices = require("../services/consultingRooms.service")
 
-
-// create consulting room
 
 /**
 * 
 * @param {Request} req 
-* @param {Response} res 
+* @param {Response}res 
 */
-const createConsultingRoom = async (req, res) => {
-    const response = await "here we create consulting rooms"
-    res.status(200).json(response)
-  };
+const createConsultingRooms= async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Consulting room created successfully"
+      let information = req.body
+      await consultingRoomsServices.createDocumentConsultingRooms("consultingRooms", information)
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred creating the consulting rooms"
+      response.info = error.message
+      res.status(500).send(response)
+  }
 
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-const getConsultingRooms = async (req, res) => {
-    const response = await "here we consulting"
-    res.status(200).json(response)
-  };
-
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-const getConsultingRoom = async (req, res) => {
-    const response = await "here we consulting"
-    res.status(200).json(response)
-  };
-
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-const deleteConsultingRoom = async (req, res) => {
-    const response = await "here we consulting"
-    res.status(200).json(response)
-  };
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-const updateConsultingRoom = async (req, res) => {
-    const response = await "here we consulting"
-    res.status(200).json(response)
-  };
-
-module.exports = {
-  
-   getConsultingRoom,getConsultingRooms,deleteConsultingRoom,updateConsultingRoom,createConsultingRoom
 }
+
+
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const readConsultingRoom = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Consulting room read successfully"
+      let id = req.params.id
+      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms",{ id })
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred reading the consulting room"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+
+}
+
+
+/**
+* 
+* @param {Request} req 
+* @param {Response}res 
+*/
+const readConsultingRooms = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Consulting rooms read successfully"
+      let result = await consultingRoomsServices.readDocumentsConsultingRooms("consultingRooms")
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred reading the consulting rooms"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
+
+
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const updateConsultingRooms = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Consulting room updated successfully"
+      let id = req.params.id
+      let information = req.body
+      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms", { id }, information)
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred updating the consulting room"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
+
+
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const deleteConsultingRooms = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Consulting room deleted successfully"
+      let id = req.params.id
+      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms", { id })
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred deleting the consulting room"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
+
+module.exports = {createConsultingRooms,readConsultingRoom,readConsultingRooms,updateConsultingRooms,deleteConsultingRooms}  
