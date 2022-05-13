@@ -1,26 +1,28 @@
-//PROPIEDAD DIEGO DURANGO
-// Importacion del framework de express
-const express = require('express')
+const express = require("express");
 
-const router = express.Router()
+const router = express.Router();
 /*
 const auth_ctr = require("../controllers/auth.controller")
 const { requestValid } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
-
-
 */
+const rooms = require("../controllers/rooms.controller")
 
-const vs = "/api/v1"
+const vs = "/api/v1";
 
-router.get(`/`, (req, res)=>{
-    res.send("Proyecto de aula Hospital")
-})
-.post()
+router
+  .get(`/`, (req, res) => {
+    res.send("Proyecto de aula Hospital");
+  })
+  .get(vs + "/getrooms", rooms.getRooms)
+  .post(vs + "/insertrooms", rooms.insertRooms)
+  .put(vs + "/updaterooms", rooms.updateRooms)
+  .delete(
+    vs + "/deleterooms/:code",
+    rooms.deleteRooms
+  )
+//router.use(requestValid);
 
-router.use(requestValid)
+//router.use(notFound);
 
-router.use(notFound)
-
-module.exports = router
-
+module.exports = router;

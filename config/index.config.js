@@ -1,6 +1,4 @@
+process.env.URIMONGODB ="mongodb+srv://saurmo-udem:9nVhp5fsbdKQRBLf@clusterudem.cvtno.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-process.env.URI_MONGODB= "mongodb://localhost:27017/?maxPoolSize=20&w=majority"
-
-process.env.DB_MONGODB="restaurante"
-
-process.env.PORT = 3001
+process.env.PORT = 3000;
+process.env.DB_MONGODB ="rooms"
