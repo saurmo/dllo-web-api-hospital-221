@@ -15,6 +15,7 @@ app.use(cors())
 
 // Integrando el router con la app
 const router = require("./routers/rooms.router")
+//const router = require("./routers/nutritionTypes.router")
 app.use(router)
 
 
