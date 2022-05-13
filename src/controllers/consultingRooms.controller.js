@@ -1,5 +1,5 @@
 // Services import
-const consultingRoomsServices = require("../services/consultingRooms.service")
+const consultingRoomsServices = require('../services/consultingRooms.service')
 
 
 /**
@@ -36,8 +36,8 @@ const createConsultingRooms= async (req, res) => {
   try {
       response.ok = true
       response.message = "Consulting room read successfully"
-      let id = req.params.id
-      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms",{ id })
+      let _id = req.params["id"]
+      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms",{ _id })
       response.info = result
       res.send(response)
   } catch (error) {
@@ -84,9 +84,9 @@ const readConsultingRooms = async (req, res) => {
   try {
       response.ok = true
       response.message = "Consulting room updated successfully"
-      let id = req.params.id
+      let _id = req.params["id"]
       let information = req.body
-      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms", { id }, information)
+      let result = await consultingRoomsServices.updateDocumentConsultingRooms("consultingRooms", { _id }, information)
       response.info = result
       res.send(response)
   } catch (error) {
@@ -109,8 +109,8 @@ const readConsultingRooms = async (req, res) => {
   try {
       response.ok = true
       response.message = "Consulting room deleted successfully"
-      let id = req.params.id
-      let result = await consultingRoomsServices.readDocumentConsultingRoom("consultingRooms", { id })
+      let _id = req.params["id"]
+      let result = await consultingRoomsServices.deleteDocumentConsultingRooms("consultingRooms", { _id })
       response.info = result
       res.send(response)
   } catch (error) {

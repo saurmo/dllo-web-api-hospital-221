@@ -1,4 +1,4 @@
-const { MongoClient, ObjectId } = require("mongodb")
+const { MongoClient, ObjectId } = require('mongodb')
 
 // Connection URI
 const uri = process.env.URI_MONGODB
@@ -39,9 +39,9 @@ const connectDB = async () => {
  const createDocumentConsultingRooms = async (collectionName, information) => {
     let db = await connectDB()
     let collection = db.collection(collectionName)
-    if (!(await hallExist(information.hall))) {
+    /*if (!(await hallExist(information.hall))) {
         throw new Error("Error with the hall ")
-    }
+    }*/
     return await collection.insertOne(information)
 }
 
@@ -63,10 +63,11 @@ const connectDB = async () => {
  * @param {*} id 
  * @returns 
  */
- const readDocumentConsultingRoom = async (collectionName,id) => {
+ const readDocumentConsultingRoom = async (collectionName,filter) => {
+     getFilter(filter)
     let db = await connectDB()
     let collection = db.collection(collectionName)
-    return collection.findOne(id)
+    return await collection.findOne(filter)
 }
 
 /**
@@ -74,15 +75,22 @@ const connectDB = async () => {
  * @param {*} filter 
  * @param {*} newDocument 
  */
-const getFilter = (filter, newDocument) => {
-
-    if (filter && filter._id) {
-        filter._id = new ObjectId(filter._id)
-        if (newDocument) {
-          newDocument._id = filter._id
+const getFilter = (filter, newDocument, isConsult=false) => {
+    if (isConsult) {
+        // Cuando viene de leerDocumentos
+        if (filter && filter._id) {
+          filter._id = new ObjectId(filter._id)
+        } 
+      }else {
+        // Cuando viene de modificar o eliminar documento
+        if (filter && filter._id) {
+          filter._id = new ObjectId(filter._id)
+          if (newDocument) { // Validacion (nuevoDocumento != null && nuevoDocumento!=undefined && nuevoDocumento!=false)
+            newDocument._id = filter._id
+          }
+        } else {
+          throw new Error("El id es obligatorio")
         }
-      } else {
-        throw new Error("Property _id is required.")
       }
 }
 
@@ -97,7 +105,7 @@ const updateDocumentConsultingRooms = async (collectionName, filter, newDocument
     getFilter(filter, newDocument)
     let db = await connectDB()
     let collection = db.collection(collectionName)
-    let consultingRoom = await readDocumentConsultingRoom(filter)
+    let consultingRoom = await readDocumentConsultingRoom(collectionName, filter)
     if (!consultingRoom) {
         throw new Error("Error with the consulting rooms")
     }
@@ -111,9 +119,10 @@ const updateDocumentConsultingRooms = async (collectionName, filter, newDocument
    * @returns 
    */
   const deleteDocumentConsultingRooms= async (collectionName, filter) => {
+    getFilter(filter)
     let db = await connectDB()
     let collection = db.collection(collectionName)
-    getFilter(filter)
+    
     return await collection.deleteOne(filter)
 }
 
