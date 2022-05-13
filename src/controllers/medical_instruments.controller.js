@@ -1,4 +1,6 @@
-const Medical_Instruments = require('../services/medical_instruments.service')
+const {response} = require('express');
+const { getMedInstruments, getMedInstrument, createMedInstrument, deleteMedInstrument, updateMedInstrument } = require('../services/medical_instruments.mongodb.service');
+
 /**
  * 
  * @param {Request} req 
@@ -9,7 +11,8 @@ const consultMedicalInstruments = async (req, res) => {
     try {
         response.ok = true;
         response.message = "Medical instruments consulted successfully.";
-        const result = await Medical_Instruments ('instrumentosMedicos');    
+        //Consultando a la base de datos el instrumento
+        let result = await getMedInstruments ('instrumentosMedicos');    
         console.log(result);
         response.info = result;
         res.send(response);
@@ -26,20 +29,20 @@ const consultMedicalInstruments = async (req, res) => {
  * @param {Request} req 
  * @param {Response} res 
  */
-const createMedicalInstrument = async (req, res) => {
+const consultMedicalInstrument = async (req, res) => {
     let response = {}
     try {
+        let _id = req.params["id"];
         response.ok = true;
-        response.message = "Medical instrument add correctly";
-        let information = req.body;
-        let result = await addMedicalInstrument('instrumentosMedicos',information);
+        response.message = "Medical instrument consulted correctly";
+        const result = await getMedInstrument ('instrumentosMedicos', {_id});               
         console.log(result);
         response.info = result;
-        response.data = information;
         res.send(response);
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred adding a medical instrument";
+        response.message = "An error has occurred consulting a medical instrument";
+        console.log(error)
         response.info = error;
         res.status(500).send(response);
     }
@@ -50,18 +53,43 @@ const createMedicalInstrument = async (req, res) => {
  * @param {Request} req 
  * @param {Response} res 
  */
-const consultMedicalInstrument = async (req, res) => {
+const createMedicalInstrument = async (req, res) => {
     let response = {}
     try {
         response.ok = true;
-        response.message = "Medical instrument consulted correctly";
-        const result = await Medical_Instruments ('instrumentosMedicos',information)               
+        response.message = "Medical instrument add correctly";
+        let information = req.body;
+        let result = await createMedInstrument('instrumentosMedicos',information);
         console.log(result);
         response.info = result;
+        response.data = information;
         res.send(response);
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred consulting a medical instrument";
+        response.message = "An error has occurred adding a medical instrument";
+        response.info = error;
+        console.log(error)
+        res.status(500).send(response);
+    }
+}
+
+const updateMedicalInstrument = async (req, res) => {
+    let response = {}
+    //const { instrumentName, quantity, price } = req.body;
+    try {
+        let _id = req.params["id"];
+        response.ok = true;
+        response.message = "Medical instrument updated correctly";
+        let information = req.body;
+        let result = await updateMedInstrument ('instrumentosMedicos',{_id}, information);
+        console.log(result);
+        response.info = result;
+        response.data = information;
+        res.send(response);
+    } catch (error) {
+        response.ok = false;
+        response.message = "An error occurred while updating a medical instrument";
+        console.log(error)
         response.info = error;
         res.status(500).send(response);
     }
@@ -75,43 +103,24 @@ const consultMedicalInstrument = async (req, res) => {
 const deleteMedicalInstrument = async (req, res) => {
     let response = {}
     try {
+        let _id = req.params["id"];
         response.ok = true;
         response.message = "Medical instrument delete correctly";
-        const result = await Medical_Instruments ('instrumentosMedicos',{_id}, information)            //.findByIdAndUpdate(req.params.id, { activo: false });
+        let information = req.body;
+        let result = await deleteMedInstrument ('instrumentosMedicos',{_id}, information)          
         console.log(result);
         response.info = result;
+        response.data = information;
         res.send(response);
     } catch (error) {
         response.ok = false;
         response.message = "An error has occurred removing a medical instrument";
+        console.log(error);
         response.info = error;
-        res.status(500).send(response);
+        res.status(500).send(response); 
     }
 }
 
-/**
- * 
- * @param {Request} req 
- * @param {Response} res 
- */
-const updateMedicalInstrument = async (req, res) => {
-    let response = {}
-    const { instrumentName, quantity, price } = req.body;
-    try {
-        console.log(req.params.id);
-        response.ok = true;
-        response.message = "Medical instrument updated correctly";
-        let result = await Medical_Instruments ('instrumentosMedicos',{_id}, information)
-        console.log(result);
-        response.info = result;
-        res.send(response);
-    } catch (error) {
-        response.ok = false;
-        response.message = "An error occurred while updating a medical instrument";
-        response.info = error;
-        res.status(500).send(response);
-    }
-}
 
 module.exports = {
     consultMedicalInstruments, 

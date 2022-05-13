@@ -11,8 +11,8 @@ const medical_instruments_ctr = require("../controllers/medical_instruments.cont
 const vs = "/api/v1"
 
 router.get(vs + "/medical_instruments", medical_instruments_ctr.consultMedicalInstruments)
-router.post(vs + "/medical_instruments", medical_instruments_ctr.createMedicalInstrument)
 router.get(vs + "/medical_instruments/:id", medical_instruments_ctr.consultMedicalInstrument)
+router.post(vs + "/medical_instruments", medical_instruments_ctr.createMedicalInstrument)
 router.put(vs + "/medical_instruments/:id", medical_instruments_ctr.updateMedicalInstrument)
 router.delete(vs + "/medical_instruments/:id", medical_instruments_ctr.deleteMedicalInstrument)
 

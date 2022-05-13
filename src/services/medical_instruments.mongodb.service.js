@@ -1,4 +1,5 @@
 
+const {get} = require("express/lib/response");
 const { MongoClient, ObjectId } = require("mongodb");
 
 // Connection URI
@@ -7,6 +8,10 @@ const uri = process.env.URI_MONGODB;
 // Create a new MongoClient
 const client = new MongoClient(uri);
 
+/**
+ * Conect a ew MongoCliente
+ * @returns 
+ */
 const conectarDB = async () => {
   // Connect the client to the server
   await client.connect();
@@ -15,22 +20,23 @@ const conectarDB = async () => {
 }
 
 /**
- * 
+ * Consulta los instrumentos medicos
  * @param {*} nameCollection 
  * @param {*} filter 
  * @returns 
  */
-const getDocuments = async (nameCollection, filter) => {
+const getMedInstruments = async (nameCollection, filter) => {
   let db = await conectarDB()
   let collectionDB = db.collection(nameCollection)
   filter = filter ? filter : {}
-  getFilterId(filter, null, true) // Lo invoco para cuando sea la consulta para un usuario en especifico
+  getFilterId(filter, null, true) // Lo invoco para cuando sea la consulta para un instrumento medico en especifico
   return collectionDB.find(filter).toArray()
 }
 
-const getDocument = async (nameCollection, filter) => {
+const getMedInstrument = async (nameCollection, filter) => {
   let db = await conectarDB()
   let collectionDB = db.collection(nameCollection)
+  getFilterId(filter);
   return collectionDB.findOne(filter)
 }
 
@@ -56,30 +62,29 @@ const getFilterId = (filter, newDocument, isConsultation = false) => {
         newDocument._id = filter._id
       }
     } else {
-      throw new Error("El id es obligatorio")
+      throw new Error("Property _id is required")
     }
   }
-
 }
 
-const createDocument = async (nameCollection, informacion) => {
+const createMedInstrument = async (nameCollection, data) => {
   let db = await conectarDB()
   let collectionDB = db.collection(nameCollection)
-  return await collectionDB.insertOne(informacion)
+  return await collectionDB.insertOne(data)
 }
 
-const deleteDocument = async (nameCollection, filtro) => {
-  getFilterId(filtro)
+const deleteMedInstrument = async (nameCollection, filter) => {
+  getFilterId(filter)
   let db = await conectarDB()
   let collectionDB = db.collection(nameCollection)
-  return await collectionDB.deleteOne(filtro)
+  return await collectionDB.deleteOne(filter)
 }
 
-const updateDocument = async (nameCollection, filtro, newDocument) => {
-  getFilterId(filtro, newDocument)
+const updateMedInstrument= async (nameCollection, filter, data) => {
+  getFilterId(filter, data)
   let db = await conectarDB()
   let collectionDB = db.collection(nameCollection)
-  return await collectionDB.replaceOne(filtro, newDocument)
+  return await collectionDB.replaceOne(filter, data)
 }
 
-module.exports = { createDocument, updateDocument, deleteDocument, getDocuments, getDocument }
+module.exports = { getMedInstruments, getMedInstrument, createMedInstrument, deleteMedInstrument, updateMedInstrument }
