@@ -3,9 +3,9 @@ const express = require('express')
 
 const router = express.Router()
 
-const auth_ctr = require("../controllers/auth.controller")
-const { verificarPeticion } = require('../middlewares/token.middleware')
-const { notFound } = require('../middlewares/404.middleware')
+// const auth_ctr = require("../controllers/auth.controller")
+// const { verificarPeticion } = require('../middlewares/token.middleware')
+// const { notFound } = require('../middlewares/404.middleware')
 
 const vs = "/api/v1"
 
@@ -14,9 +14,9 @@ router.get(`/`, (req, res)=>{
 })
 
 
-router.use(verificarPeticion)
+// router.use(verificarPeticion)
 
-router.use(notFound)
+// router.use(notFound)
 
 module.exports = router
 
