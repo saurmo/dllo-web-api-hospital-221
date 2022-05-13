@@ -6,25 +6,22 @@ const {ReadDocAppointmentsTypes,
     } = require("../services/AppointmentsTypes.service")
 
 const ReadAppointmentsTypes = async (req, res) => {
-    const readNutritionRegistry = async (req, res) => {
-        let response = {}
-        try {
-            response.ok = true
-            response.message = "appointment type reading successfully"
-            let idAppointmentType = req.params.id
-            let result = await ReadDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
-                {idAppointmentType})
-            response.info = result
-            res.send(response)
-        } catch (error) {
-            console.log(error)
-            response.ok = false
-            response.message = "An error occurred reading the appointment type"
-            response.info = error.message
-            res.status(500).send(response)
-        }
-    
-    }
+    let response = {}
+    try {
+        response.ok = true
+        response.message = "appointment type reading successfully"
+        let _id = req.params.id
+        let result = await ReadDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
+            {_id})
+        response.info = result
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        response.ok = false
+        response.message = "An error occurred reading the appointment type"
+        response.info = error.message
+        res.status(500).send(response)
+    } 
 }
 
 const ReadsAppointmentsTypes = async (req, res) => {
@@ -67,10 +64,10 @@ const UpdateAppointmentsTypes = async (req, res) => {
     try {
         response.ok = true
         response.message = "appointment type updating successfully"
-        let idAppointmentType = req.params.id
+        let _id = req.params.id
         let information = req.body
         let result = await UpdateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
-            {idAppointmentType}, information)
+            {_id}, information)
         response.info = result
         res.send(response)
     } catch (error) {
@@ -87,8 +84,8 @@ const DeleteAppointmentsTypes = async (req, res) => {
     try {
         response.ok = true
         response.message = "appointment type deleted successfully"
-        let idAppointmentType = req.params.id
-        let result = await DeleteDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,{idAppointmentType})
+        let _id = req.params.id
+        let result = await DeleteDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,{_id})
         response.info = result
         res.send(response)
     } catch (error) {
