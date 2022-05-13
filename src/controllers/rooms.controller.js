@@ -16,7 +16,7 @@ const insertRooms = async (req, res) => {
         response.ok = true
         response.message = "room added successfully."
         let information = req.body
-        await createRoom(process.env.DB_MONGODB, information)
+        await createRoom(process.env.COLLECTION, information)
         res.send(response)
     } catch (error) {
         console.log(error)
@@ -38,7 +38,7 @@ const getRooms = async (req, res) => {
     try {
         response.ok = true
         response.message = "rooms consulted correctly."
-        let result = await getRoom(process.env.DB_MONGODB)
+        let result = await getRoom(process.env.COLLECTION)
         response.info = result
         res.send(response)
     } catch (error) {

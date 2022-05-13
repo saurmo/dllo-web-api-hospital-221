@@ -16,15 +16,10 @@ return DB;
  * @param {json} information 
  * @returns {json} Resultado de la inserción 
  */
-const createRoom = async (colletionName,information) => { 
-    information["activo"] = true
-    if(await roomExists(information.codigo)){
-        throw new Error("La carrera ya existe")
-    }
-    validarInfoCarrera(information)
-    let db = await connectDB();
-    let coleccion =db.collection(colletionName)
-    return await coleccion.insertOne(information)
+const createRoom = async (collectionName,information) => { 
+    let db = await connectDB()
+    let collection = db.collection(collectionName)
+    return await collection.insertOne(information)
 }
 
 /**
@@ -103,22 +98,9 @@ const validarInfoCarrera = (information) => {
 
 /**
  * 
- * @param {string} cod_carrera 
+ * @param {string} coderoom 
  * @returns {boolean} Si la carrera existe y está activa
  */
-const roomExists = async (cod_carrera) => {
-    let db = await connectDB()
-    let coleccion = db.collection(process.env.COLECCION_CARRERAS)
-    let projection = { _id: 0, codigo: 1, activo: 1 }
-    let carreras = coleccion.find().project(projection)
-    let encontrado = false
-    await carreras.forEach((carrera) => {
-        if (carrera.codigo == cod_carrera && carrera.activo) {
-            encontrado = true
-        }
-    })
-    return encontrado
-}
 
 
 /**
