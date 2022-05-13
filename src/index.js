@@ -11,10 +11,10 @@ const app = express()
 app.use(express.json())
 
 // Aplicar middleware cors
-app.use(cors())
+// app.use(cors())
 
 // Integrando el router con la app
-const router = require("./routers/index.router")
+const router = require("./routers/facturacion.router")
 app.use(router)
 
 
@@ -22,7 +22,7 @@ app.use(router)
 // Puerto donde esta escuchando la API
 const PORT = process.env.PORT
 
-// Levantar la API que estará escuchando en el PUERTO 3000
+// Levantar la API que estará escuchando en el PUERTO 3001
 // 1. Primer parametro: Puerto
 // 2. Segundo parametro: Callback - Funcion
 app.listen(PORT, () => {
