@@ -59,11 +59,11 @@ const getRooms = async (req, res) => {
 const updateRooms = async (req, res) => {
     let response = {}
     try {
-        let code = req.body["room-code"]
+        let code = req.body["roomCode"]
         response.ok = true
         response.message = "Room modified successfully"
         let information = req.body
-        await updateRoom(process.env.DB_MONGODB, code, information)
+        await updateRoom(process.env.COLLECTION, code, information)
         res.send(response)
     } catch (error) {
         console.log(error)
@@ -85,8 +85,7 @@ const deleteRooms = async (req, res) => {
         let code = req.params.code;
         response.ok = true
         response.message = "Room removed successfully." 
-        let result = await deleteRoom({ code })
-        console.log(result)
+        let result = await deleteRoom(process.env.COLLECTION,code)
         response.info = result
         res.send(response)
     } catch (error) {

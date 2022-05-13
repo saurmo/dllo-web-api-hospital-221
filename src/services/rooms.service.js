@@ -16,10 +16,10 @@ return DB;
  * @param {json} information 
  * @returns {json} Resultado de la inserción 
  */
-const createRoom = async (collectionName,information) => { 
+const createRoom = async (collection,information) => { 
     let db = await connectDB()
-    let collection = db.collection(collectionName)
-    return await collection.insertOne(information)
+    let collectionone = db.collection(collection)
+    return await collectionone.insertOne(information)
 }
 
 /**
@@ -36,26 +36,17 @@ const getRoom = async (colletionName) => {
 
 /**
  * 
- * @param {string} colletionName 
- * @param {string} filtro 
- * @param {json} nuevoDocumento 
- * @returns {json} Resultado de la modificación
+ * @param {*} collection 
+ * @param {*} code 
+ * @param {*} information 
+ * @returns 
  */
-const updateRoom = async(colletionName,filtro,nuevoDocumento) => { 
-    validarInfoCarrera(nuevoDocumento)
-
-    let carrera = await leerDocumentoCarreraConEstudiantes({codigo:filtro})
-
-    if(carrera[0].estudiantes.length != 0){
-        throw new Error("No puede modificar la carrera ya que tiene estudiantes matriculados")
-    }
-
+const updateRoom = async (collection, code, information) => {
     let db = await connectDB()
-    let coleccion =db.collection(colletionName)
-    let query = { codigo: filtro }
-    let documento = {$set:nuevoDocumento}
-    return await coleccion.findOneAndUpdate( query, documento)
-
+    let collectionone = db.collection(collection)
+    let filter = {"roomCode": code}
+    let data = {$set: information}
+    return collectionone.findOneAndUpdate(filter, data)
 }
 
 
@@ -64,14 +55,13 @@ const updateRoom = async(colletionName,filtro,nuevoDocumento) => {
  * @param {json} filtro 
  * @returns Resultado de desactivar la carrera
  */
- const deleteRoom = async(filtro) => { 
+ const deleteRoom = async(collection,code) => { 
     let db = await connectDB()
-    if(!(await roomExists(filtro.codigo))){
-        throw new Error("La carrera no existe o ya está deshabilitada")
-    }
-    let documentoActualizado = {$set: {activo: false,},}
-    let coleccion =db.collection(process.env.COLECCION_CARRERAS)
-    return await coleccion.findOneAndUpdate({codigo:filtro.codigo}, documentoActualizado)
+    let collection_ =db.collection(collection)
+    let filter = {"roomCode": code}
+    await collection_.findOneAndDelete(filter)
+    let resultado = "Room removed"
+    return resultado
 }
 
 
