@@ -7,73 +7,82 @@ const uri = process.env.URI_MONGODB;
 // Create a new MongoClient
 const client = new MongoClient(uri);
 
-const conectarDB = async () => {
-  // Connect the client to the server
+/**
+ * Connect the client to the server
+ * @returns 
+ */
+const connectDB = async () => {
   await client.connect();
   let DB = client.db(process.env.DB_MONGODB)
   return DB;
 }
 
-const leerDocumentos = async (nombreColeccion, filtro) => {
-  let db = await conectarDB()
-  let coleccion = db.collection(nombreColeccion)
-  filtro = filtro ? filtro : {}
-  obtenerFiltroId(filtro, null, true) // Lo invoco para cuando sea la consulta para un usuario en especifico
-  return coleccion.find(filtro).toArray()
+/**
+ * Consulta los documentos de una colección
+ * @param {*} collection 
+ * @param {*} filter 
+ * @returns 
+ */
+const getDocuments = async (collection, filter) => {
+  let db = await connectDB()
+  let collectionDB = db.collection(collection)
+  filter = filter ? filter : {}
+  getFilter(filter, null, true) // Lo invoco para cuando sea la consulta para un usuario en especifico
+  return collectionDB.find(filter).toArray()
 }
 
-const leerDocumento = async (nombreColeccion, filtro) => {
-  let db = await conectarDB()
-  let coleccion = db.collection(nombreColeccion)
-  return coleccion.findOne(filtro)
+const getDocument = async (collection, filter) => {
+  let db = await connectDB()
+  let collectionDB = db.collection(collection)
+  return collectionDB.findOne(filter)
 }
 
 /**
  * Convirtirtiendo el filtro._id en un objetoId
  * @param {*} filtro 
  * @param {*} nuevoDocumento 
- * @param {*} esConsulta Me indica si el metodo se 
+ * @param {*} isHttpMethodGet Me indica si el metodo se 
  * invoca desde leerDocumentos
  */
-const obtenerFiltroId = (filtro, nuevoDocumento, esConsulta = false) => {
+const getFilter = (filter, newDocument, isHttpMethodGet = false) => {
 
-  if (esConsulta) {
+  if (isHttpMethodGet) {
     // Cuando viene de leerDocumentos
-    if (filtro && filtro._id) {
-      filtro._id = new ObjectId(filtro._id)
-    } 
-  }else {
+    if (filter && filter._id) {
+      filter._id = new ObjectId(filter._id)
+    }
+  } else {
     // Cuando viene de modificar o eliminar documento
-    if (filtro && filtro._id) {
-      filtro._id = new ObjectId(filtro._id)
-      if (nuevoDocumento) { // Validacion (nuevoDocumento != null && nuevoDocumento!=undefined && nuevoDocumento!=false)
-        nuevoDocumento._id = filtro._id
+    if (filter && filter._id) {
+      filter._id = new ObjectId(filter._id)
+      if (newDocument) {
+        newDocument._id = filter._id
       }
     } else {
-      throw new Error("El id es obligatorio")
+      throw new Error("Property _id is required.")
     }
   }
 
 }
 
-const agregarDocumento = async (nombreColeccion, informacion) => {
-  let db = await conectarDB()
-  let coleccion = db.collection(nombreColeccion)
-  return await coleccion.insertOne(informacion)
+const createDocument = async (collection, data) => {
+  let db = await connectDB()
+  let collectionDB = db.collection(collection)
+  return await collectionDB.insertOne(data)
 }
 
-const eliminarDocumento = async (nombreColeccion, filtro) => {
-  obtenerFiltroId(filtro)
-  let db = await conectarDB()
-  let coleccion = db.collection(nombreColeccion)
-  return await coleccion.deleteOne(filtro)
+const deleteDocument = async (collection, filter) => {
+  getFilter(filter)
+  let db = await connectDB()
+  let collectionDB = db.collection(collection)
+  return await collectionDB.deleteOne(filter)
 }
 
-const modificarDocumento = async (nombreColeccion, filtro, nuevoDocumento) => {
-  obtenerFiltroId(filtro, nuevoDocumento)
-  let db = await conectarDB()
-  let coleccion = db.collection(nombreColeccion)
-  return await coleccion.replaceOne(filtro, nuevoDocumento)
+const updateDocument = async (collection, filter, data) => {
+  getFilter(filter, data)
+  let db = await connectDB()
+  let collectionDB = db.collection(collection)
+  return await collectionDB.replaceOne(filter, data)
 }
 
-module.exports = { agregarDocumento, modificarDocumento, eliminarDocumento, leerDocumentos, leerDocumento }
+module.exports = { createDocument, updateDocument, deleteDocument, getDocuments, getDocument }
