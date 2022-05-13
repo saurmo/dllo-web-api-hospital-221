@@ -18,19 +18,6 @@ const connectDB = async () => {
 
 
 /**
- * Search hall in DB and return true o false
- * @param {*} information {idConsultingRooms, hall, availability}
- * @returns {*} True if exist
- */
- const hallExist = async (information) => {
-    let db = await connectDB()
-    let collection = db.collection("hall")
-    let hall = await collection.find({hall:information}).toArray()
-    if (hall.length == 0) {
-        return false
-    }
-}
-/**
  * Create a consulting rooms
  * @param {*} collectionName 
  * @param {*} information {idConsultingRooms, hall, availability}
@@ -39,9 +26,6 @@ const connectDB = async () => {
  const createDocumentConsultingRooms = async (collectionName, information) => {
     let db = await connectDB()
     let collection = db.collection(collectionName)
-    /*if (!(await hallExist(information.hall))) {
-        throw new Error("Error with the hall ")
-    }*/
     return await collection.insertOne(information)
 }
 
@@ -77,19 +61,17 @@ const connectDB = async () => {
  */
 const getFilter = (filter, newDocument, isConsult=false) => {
     if (isConsult) {
-        // Cuando viene de leerDocumentos
+        // When come from read
         if (filter && filter._id) {
           filter._id = new ObjectId(filter._id)
         } 
       }else {
-        // Cuando viene de modificar o eliminar documento
+        // When come from update and delete
         if (filter && filter._id) {
           filter._id = new ObjectId(filter._id)
-          if (newDocument) { // Validacion (nuevoDocumento != null && nuevoDocumento!=undefined && nuevoDocumento!=false)
-            newDocument._id = filter._id
-          }
+          if (newDocument) {newDocument._id = filter._id}
         } else {
-          throw new Error("El id es obligatorio")
+          throw new Error("Id is required")
         }
       }
 }
