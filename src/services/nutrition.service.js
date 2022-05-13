@@ -16,52 +16,49 @@ const conectionDB = async () => {
 const createDocumentNutritionRegistry = async (collectionName, information) => {
     let db = await conectionDB()
     let collection = db.collection(collectionName)
-    validateInformationToRegistry(information)
+    await validateInformationToRegistry(information)
     return await collection.insertOne(information)
 }
 
-const validateInformationToRegistry = (information) => {
-
-    if (!(pacienteExist(information.pacientIdentification))) {
+const validateInformationToRegistry = async (information) => {
+    if (!(await pacienteExist(information.patientIdentification))) {
         throw new Error("The patient identification doesn't exist in the database")
     }
 
-    if (!(roomExist(information.roomCode))) {
-        throw new Error("The room code doesn't exist in the database")
-    }
+    // if (!( await roomExist(information.roomCode))) {
+    //     throw new Error("The room code doesn't exist in the database")
+    // }
 
-    if (!(nutritionExist(information.nutritionCode))) {
+    if (!(await nutritionExist(information.nutritionCode))) {
         throw new Error("The nutrition code doesn't exist in the database")
     }
 }
 
-const pacienteExist = (information) => {
+const pacienteExist = async (information) => {
     let db = await conectionDB()
     let collection = db.collection(process.env.COLLECTION_PATIENTS)
-    let patients = await collection.find().toArray()
-    let patient = patients.filter((patient) => patient.idPatient == information)
+    let patient = await collection.find({idPatient:information}).toArray()
     if (patient.length == 0) {
         return false
     }
     return true
 }
 
-const roomExist = (information) => {
+const roomExist = async (information) => {
     let db = await conectionDB()
     let collection = db.collection(process.env.COLLECTION_ROOMS)
-    let rooms = await collection.find().toArray()
-    let room = rooms.filter((room) => room.roomCode == information)
+    let room = await collection.find({roomCode: information}).toArray()
     if (room.length == 0) {
         return false
     }
     return true
 }
 
-const nutritionExist = (information) => {
+const nutritionExist = async (information) => {
     let db = await conectionDB()
-    let collection = db.collection(process.env.COLLECTION_ROOMS)
-    let nutritions = await collection.find().toArray()
-    let nutrition = nutritions.filter((nutrition) => nutrition.nutritionCode == information)
+    let collection = db.collection(process.env.COLLECTION_NUTRITION_TYPES)
+    let nutrition = await collection.find({nutritionCode: information}).toArray()
+    console.log(nutrition);
     if (nutrition.length == 0) {
         return false
     }
@@ -76,14 +73,12 @@ const readDocumentsNutritionRegistry = async (collectionName) => {
 
 const readDocumentNutritionRegistry = async (collectionName, id) => {
 
-    if (!(pacienteExist(id.id))){
+    if (!( await pacienteExist(id.id))){
         throw new Error("The patient identification doesn't exist in the database")
     }
 
-    let registriesArray = []
     let registries = await readDocumentsNutritionRegistry(collectionName)
-
-    registriesArray = registries.filter((registry) => registry.pacientIdentification == id.id)
+    let registriesArray = registries.filter((registry) => registry.patientIdentification == id.id)
 
     if(registriesArray.length == 0){
         throw new Error("The patient doesn't have registries in the database")
