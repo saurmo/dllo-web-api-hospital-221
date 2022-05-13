@@ -32,6 +32,31 @@ const consultNutritionTypes = async (req, res) => {
  * @param {Request} req 
  * @param {Repsonse}res 
  */
+ const consultOneNutritionType = async (req, res) => {
+
+    let response = {}
+    try {
+        response.ok = true
+        response.message = "Nutrition type returned correctly."
+        let nutritionCode = req.params.nutritionCode
+        let result = await consultOneDocumentNutritionType(process.env.COLLECTION_NUTRITION_TYPES, nutritionCode)
+        response.info = result
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        response.ok = false
+        response.message = "An error has ocurred while returning the data."
+        response.info = error.message
+        res.status(500).send(response)
+    }
+
+}
+
+/**
+ * 
+ * @param {Request} req 
+ * @param {Repsonse}res 
+ */
  const createNutritionType = async (req, res) => {
 
     let response = {}
@@ -52,4 +77,7 @@ const consultNutritionTypes = async (req, res) => {
 
 }
 
-module.exports = { consultNutritionTypes, createNutritionType }
+module.exports = { 
+    consultNutritionTypes,
+    consultOneNutritionType, 
+    createNutritionType }

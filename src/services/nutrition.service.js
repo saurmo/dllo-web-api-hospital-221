@@ -19,14 +19,25 @@ const consultDocumentsNutritionTypes = async (collectionName) => {
 const consultOneDocumentNutritionType = async (collectionName, nutritionCode) => {
     let db = await conectDB()
     let collection = db.collection(collectionName)
-    return await collection.find({ nutritionCode: nutritionCode })
+    let result = await collection.find({ nutritionCode: nutritionCode }).toArray()
+    if(result.length === 0){
+        throw new Error("The nutrition type does not exist")
+    }
+    return result
 }
 
 const createDocumentNutritionType = async (collectionName, data) => {
     let db = await conectDB()
     let collection = db.collection(collectionName)
+    let nutritionCode = data.nutritionCode
+    let name = data.name
+    if(nutritionCode.length === 0 || name.length === 0){
+        throw new Error("nutrition code and name are required for the nutrition type to be saved.")
+    }
     return await collection.insertOne(data)
 }
+
+
 
 const updateDocumentNutritionType = async (collectionName, nutritionCode, data) => {
 
