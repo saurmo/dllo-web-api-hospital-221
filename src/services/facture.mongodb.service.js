@@ -1,4 +1,5 @@
 
+const { get } = require("express/lib/response");
 const { MongoClient, ObjectId } = require("mongodb");
 
 // Connection URI
@@ -34,6 +35,7 @@ const getFactures = async (collection, filter) => {
 const getFacture = async (collection, filter) => {
   let db = await connectDB()
   let collectionDB = db.collection(collection)
+  getFilter(filter);
   return collectionDB.findOne(filter)
 }
 
@@ -78,11 +80,11 @@ const deleteDocument = async (collection, filter) => {
   return await collectionDB.deleteOne(filter)
 }
 
-const updateDocument = async (collection, filter, data) => {
+const updateFacture = async (collection, filter, data) => {
   getFilter(filter, data)
   let db = await connectDB()
   let collectionDB = db.collection(collection)
   return await collectionDB.replaceOne(filter, data)
 }
 
-module.exports = { createFacture, updateDocument, deleteDocument, getFactures, getFacture }
+module.exports = { createFacture, updateFacture, deleteDocument, getFactures, getFacture }
