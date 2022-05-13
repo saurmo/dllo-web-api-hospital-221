@@ -7,7 +7,6 @@ const router = express.Router()
 const auth_ctr = require("../controllers/auth.controller")
 const { requestValid } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
-const consultingRooms_ctr = require("../controllers/consultingRooms.controller")
 const clinicHistory_ctr = require("../controllers/clinicHistory.controller")
 
 const vs = "/api/v1"

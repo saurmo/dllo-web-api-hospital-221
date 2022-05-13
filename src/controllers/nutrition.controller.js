@@ -1,7 +1,7 @@
 const {
     createDocumentNutritionRegistry,
     readDocumentsNutritionRegistry,
-    readDocumentNutritionRegistry,
+    readDocumentNutritionRegistryOfPatient,
     updateDocumentNutritionRegistry,
     deleteDocumentNutritionRegistry
 } = require("../services/nutrition.service")
@@ -65,7 +65,7 @@ const readNutritionRegistry = async (req, res) => {
         response.ok = true
         response.message = "Registry read successfully"
         let id = req.params.id
-        let result = await readDocumentNutritionRegistry(process.env.COLLECTION_NUTRITION_REGISTRY,
+        let result = await readDocumentNutritionRegistryOfPatient(process.env.COLLECTION_NUTRITION_REGISTRY,
             { id })
         response.info = result
         res.send(response)
@@ -89,10 +89,10 @@ const updateNutritionRegistry = async (req, res) => {
     try {
         response.ok = true
         response.message = "Registry updated successfully"
-        let id = req.params.id
+        let _id = req.params.id
         let information = req.body
         let result = await updateDocumentNutritionRegistry(process.env.COLLECTION_NUTRITION_REGISTRY,
-            { id }, information)
+            { _id }, information)
         response.info = result
         res.send(response)
     } catch (error) {
@@ -115,8 +115,8 @@ const deleteNutritionRegistry = async (req, res) => {
     try {
         response.ok = true
         response.message = "Registry deleted successfully"
-        let id = req.params.id
-        let result = await deleteDocumentNutritionRegistry(process.env.COLLECTION_NUTRITION_REGISTRY,{ id })
+        let _id = req.params.id
+        let result = await deleteDocumentNutritionRegistry(process.env.COLLECTION_NUTRITION_REGISTRY,{ _id })
         response.info = result
         res.send(response)
     } catch (error) {

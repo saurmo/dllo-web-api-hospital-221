@@ -13,7 +13,7 @@ router.get(vs + "/nutrition-registry", nutrition_ctr.ReadNutritionRegistries)
     .get(vs + "/nutrition-registry/:id", nutrition_ctr.readNutritionRegistry)
     .post(vs + "/nutrition-registry", nutrition_ctr.createNutritionRegistry)
     .put(vs + "/nutrition-registry/:id", nutrition_ctr.updateNutritionRegistry)
-    .delete(vs + "/nutrition-registry", nutrition_ctr.deleteNutritionRegistry)
+    .delete(vs + "/nutrition-registry/:id", nutrition_ctr.deleteNutritionRegistry)
 
 router.use(notFound)
 
