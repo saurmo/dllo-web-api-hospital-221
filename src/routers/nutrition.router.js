@@ -9,6 +9,6 @@ router.get(vs + "/nutrition-types", typesNutritionCtr.consultNutritionTypes)
     .get(vs + "/nutrition-types/:nutritionCode", typesNutritionCtr.consultOneNutritionType)
     .post(vs + "/nutrition-types", typesNutritionCtr.createNutritionType)
     .put(vs + "/nutrition-types/:nutritionCode", typesNutritionCtr.updateNutritionType)
-    // .delete(vs + "/nutrition-types/:nutritionCode", typesNutritionCtr.consultTypesNutrition)
+    .delete(vs + "/nutrition-types/:nutritionCode", typesNutritionCtr.deleteNutritionType)
 
 module.exports = router;

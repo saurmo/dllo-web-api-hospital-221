@@ -50,13 +50,20 @@ const updateDocumentNutritionType = async (collectionName, nutritionCode, data) 
     return collection.findOneAndUpdate(filter, document)
 }
 
-const deleteDocumentNutritionType = (collectionName, nutritionCode) => {
-
+const deleteDocumentNutritionType = async (collectionName, nutritionCode) => {
+    if((await consultOneDocumentNutritionType(collectionName, nutritionCode)).length === 0){
+        throw new Error("The nutrition type to be deleted does not exist")
+    }
+    let db = await conectDB()
+    let collection = db.collection(collectionName)
+    let filter = {nutritionCode: nutritionCode}
+    return collection.findOneAndDelete(filter)
 }
 
 module.exports = {
     consultDocumentsNutritionTypes,
     consultOneDocumentNutritionType,
     createDocumentNutritionType,
-    updateDocumentNutritionType
+    updateDocumentNutritionType,
+    deleteDocumentNutritionType
 }

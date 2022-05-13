@@ -2,7 +2,8 @@ const {
     consultDocumentsNutritionTypes,
     consultOneDocumentNutritionType,
     createDocumentNutritionType,
-    updateDocumentNutritionType } = require("../services/nutrition.service");
+    updateDocumentNutritionType,
+    deleteDocumentNutritionType } = require("../services/nutrition.service");
 
 /**
  * 
@@ -33,7 +34,7 @@ const consultNutritionTypes = async (req, res) => {
  * @param {Request} req 
  * @param {Repsonse}res 
  */
- const consultOneNutritionType = async (req, res) => {
+const consultOneNutritionType = async (req, res) => {
 
     let response = {}
     try {
@@ -58,7 +59,7 @@ const consultNutritionTypes = async (req, res) => {
  * @param {Request} req 
  * @param {Repsonse}res 
  */
- const createNutritionType = async (req, res) => {
+const createNutritionType = async (req, res) => {
 
     let response = {}
     try {
@@ -83,7 +84,7 @@ const consultNutritionTypes = async (req, res) => {
  * @param {Request} req 
  * @param {Repsonse}res 
  */
- const updateNutritionType = async (req, res) => {
+const updateNutritionType = async (req, res) => {
 
     let response = {}
     try {
@@ -104,8 +105,36 @@ const consultNutritionTypes = async (req, res) => {
 
 }
 
-module.exports = { 
+/**
+ * 
+ * @param {Request} req 
+ * @param {Repsonse}res 
+ */
+const deleteNutritionType = async (req, res) => {
+
+    let response = {}
+    try {
+        response.ok = true
+        response.message = "Nutrition type deleted correctly."
+        let data = req.body
+        let nutritionCode = req.params.nutritionCode
+        let result = await deleteDocumentNutritionType(process.env.COLLECTION_NUTRITION_TYPES, nutritionCode)
+        response.info = result
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        response.ok = false
+        response.message = "An error has ocurred deleting the data."
+        response.info = error.message
+        res.status(500).send(response)
+    }
+
+}
+
+module.exports = {
     consultNutritionTypes,
-    consultOneNutritionType, 
+    consultOneNutritionType,
     createNutritionType,
-    updateNutritionType }
+    updateNutritionType,
+    deleteNutritionType
+}
