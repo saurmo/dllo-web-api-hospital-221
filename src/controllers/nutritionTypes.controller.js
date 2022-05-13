@@ -3,7 +3,7 @@ const {
     consultOneDocumentNutritionType,
     createDocumentNutritionType,
     updateDocumentNutritionType,
-    deleteDocumentNutritionType } = require("../services/nutrition.service");
+    deleteDocumentNutritionType } = require("../services/nutritionTypes.service");
 
 /**
  * 

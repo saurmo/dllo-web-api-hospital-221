@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const typesNutritionCtr = require("../controllers/nutrition.controller");
+const typesNutritionCtr = require("../controllers/nutritionTypes.controller");
 
 const vs = "/api/v1";
 
