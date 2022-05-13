@@ -16,20 +16,17 @@ const ReadsDocAppointmentsTypes = async (collectionAppointmentsTypes) => {
     return await collection.find().toArray()
 }
 
-const ReadDocAppointmentsTypes = async (collectionAppointmentsTypes, Filterid ) => {
+const ReadDocAppointmentsTypes = async (collectionAppointmentsTypes, Filterid) => {
     let db = await conectDB()
     let collection = db.collection(collectionAppointmentsTypes)
     Filterid = Filterid ? Filterid : {}
     getFilterID(Filterid, null, true)
-    return collection.find().toArray()
+    return collection.find(Filterid).toArray()
 }
 
 const CreateDocAppointmentsTypes = async (collectionAppointmentsTypes, information) => {    
     let db = await conectDB()
     let collection = db.collection(collectionAppointmentsTypes)
-    let idAppointmentType = information.idAppointmentType
-    let name = information.name
-    let description = information.description
     return await collection.insertOne(information)
 }
 
@@ -37,7 +34,7 @@ const UpdateDocAppointmentsTypes = async (collectionAppointmentsTypes, Filterid,
     getFilterID(Filterid, information)
     let db = await conectDB()
     let collection = db.collection(collectionAppointmentsTypes)
-    return collection.findOneAndUpdate(Filterid, information)
+    return collection.replaceOne(Filterid, information)
 }
 
 const DeleteDocAppointmentsTypes  = async (collectionAppointmentsTypes, Filterid) => {
@@ -61,7 +58,7 @@ const getFilterID = (filter, information, isConsult = false) => {
         return // Se sale del metodo
       }else // cuando  obneterFIltroId se invoca desde (modificar o  elminar) y el -id no esta definido se chinga
       {
-        throw new Error("Id Obligatorio")
+        throw new Error("Id required")
       }  
     }
    }
