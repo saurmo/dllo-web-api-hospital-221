@@ -1,7 +1,8 @@
 const {
     consultDocumentsNutritionTypes,
     consultOneDocumentNutritionType,
-    createDocumentNutritionType } = require("../services/nutrition.service");
+    createDocumentNutritionType,
+    updateDocumentNutritionType } = require("../services/nutrition.service");
 
 /**
  * 
@@ -77,7 +78,34 @@ const consultNutritionTypes = async (req, res) => {
 
 }
 
+/**
+ * 
+ * @param {Request} req 
+ * @param {Repsonse}res 
+ */
+ const updateNutritionType = async (req, res) => {
+
+    let response = {}
+    try {
+        response.ok = true
+        response.message = "Nutrition type updated correctly."
+        let data = req.body
+        let nutritionCode = req.params.nutritionCode
+        let result = await updateDocumentNutritionType(process.env.COLLECTION_NUTRITION_TYPES, nutritionCode, data)
+        response.info = result
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        response.ok = false
+        response.message = "An error has ocurred updating the data."
+        response.info = error.message
+        res.status(500).send(response)
+    }
+
+}
+
 module.exports = { 
     consultNutritionTypes,
     consultOneNutritionType, 
-    createNutritionType }
+    createNutritionType,
+    updateNutritionType }
