@@ -3,7 +3,7 @@ const consultingRoomsServices = require('../services/consultingRooms.service')
 
 
 /**
-* 
+* Create a consulting rooms
 * @param {Request} req 
 * @param {Response}res 
 */
@@ -27,7 +27,7 @@ const createConsultingRooms= async (req, res) => {
 
 
 /**
- * 
+ * Read all the consulting rooms
  * @param {Request} req 
  * @param {Response} res 
  */
@@ -52,7 +52,7 @@ const createConsultingRooms= async (req, res) => {
 
 
 /**
-* 
+* Read one consulting rooms by id
 * @param {Request} req 
 * @param {Response}res 
 */
@@ -75,7 +75,7 @@ const readConsultingRooms = async (req, res) => {
 
 
 /**
- * 
+ * Update a consulting room
  * @param {Request} req 
  * @param {Response} res 
  */
@@ -100,7 +100,7 @@ const readConsultingRooms = async (req, res) => {
 
 
 /**
- * 
+ * Delete a consulting room
  * @param {Request} req 
  * @param {Response} res 
  */

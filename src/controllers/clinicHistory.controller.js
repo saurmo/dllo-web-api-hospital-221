@@ -3,7 +3,7 @@ const consultingClinicHistoryServices = require('../services/clinicHistory.servi
 
 
 /**
-* 
+* Create a Clinic History
 * @param {Request} req 
 * @param {Response}res 
 */
@@ -26,7 +26,7 @@ const createClinicHistory= async (req, res) => {
 }
 
 /**
- * 
+ * Read all the Clinic History
  * @param {Request} req 
  * @param {Response} res 
  */
@@ -51,7 +51,7 @@ const createClinicHistory= async (req, res) => {
 
 
 /**
-* 
+* Read one Clinic History by id
 * @param {Request} req 
 * @param {Response}res 
 */
@@ -74,7 +74,7 @@ const readClinicHistorys = async (req, res) => {
 
 
 /**
- * 
+ * Update a Clinic History
  * @param {Request} req 
  * @param {Response} res 
  */
@@ -98,7 +98,7 @@ const readClinicHistorys = async (req, res) => {
 }
 
 /**
- * 
+ * Delete a Clinic History
  * @param {Request} req 
  * @param {Response} res 
  */

@@ -77,7 +77,7 @@ const getFilter = (filter, newDocument, isConsult=false) => {
 }
 
 /**
- * 
+ * Update a consulting room
  * @param {*} collectionName 
  * @param {*} filter 
  * @param {*} newDocument 
