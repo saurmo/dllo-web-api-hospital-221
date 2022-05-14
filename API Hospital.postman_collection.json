@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc8b50c8-7d4a-473f-a916-48fb077298c6",
+		"_postman_id": "835574c6-96b5-4fe1-b7c0-608f115e2878",
 		"name": "API Hospital",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -241,7 +241,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"roomCode\": \"0104\",\r\n    \"roomNumber\":\"6\",\r\n    \"idHall\":\"Random2\"\r\n}\r\n",
+							"raw": "{\r\n    \"roomCode\": \"0105\",\r\n    \"roomNumber\":\"6\",\r\n    \"idHall\":\"Random2\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -249,12 +249,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/insertrooms",
+							"raw": "{{url}}/rooms",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"insertrooms"
+								"rooms"
 							]
 						}
 					},
@@ -266,12 +266,42 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/getrooms",
+							"raw": "{{url}}/rooms",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"getrooms"
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/rooms/0104",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"rooms",
+								"0104"
 							]
 						}
 					},
@@ -292,12 +322,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/updaterooms",
+							"raw": "{{url}}/rooms",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"updaterooms"
+								"rooms"
 							]
 						}
 					},
@@ -318,13 +348,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/deleterooms/0104",
+							"raw": "{{url}}/rooms",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"deleterooms",
-								"0104"
+								"rooms"
 							]
 						}
 					},

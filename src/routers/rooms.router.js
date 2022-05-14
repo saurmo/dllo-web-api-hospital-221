@@ -14,11 +14,12 @@ router
   .get(`/`, (req, res) => {
     res.send("Proyecto de aula Hospital");
   })
-  .get(vs + "/getrooms", rooms.getRooms)
-  .post(vs + "/insertrooms", rooms.insertRooms)
-  .put(vs + "/updaterooms", rooms.updateRooms)
+  .get(vs + "/rooms", rooms.getRooms)
+  .get(vs + "/rooms/:roomcode", rooms.getroom)
+  .post(vs + "/rooms", rooms.insertRooms)
+  .put(vs + "/rooms", rooms.updateRooms)
   .delete(
-    vs + "/deleterooms/:code",
+    vs + "/rooms/:code",
     rooms.deleteRooms
   )
 //router.use(requestValid);

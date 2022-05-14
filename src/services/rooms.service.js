@@ -12,36 +12,99 @@ return DB;
 }
 
 /**
- * @param {string} colletionName 
- * @param {json} information 
- * @returns {json} Resultado de la inserción 
+ * validate if empty data
+ * @param {*} data 
+ * @returns 
  */
-const createRoom = async (collection,information) => { 
-    let db = await connectDB()
-    let collectionone = db.collection(collection)
-    return await collectionone.insertOne(information)
+const validateEmptyData = (data) => {
+    if (Object.keys(data).length === 0) {
+        throw new Error("You are trying to enter an empty room, please enter the room code and the idhall at least")
+    }
+    return false
 }
 
 /**
- * 
- * @param {string} colletionName 
- * @returns {json} Información de las carreras
+ * It finds one document of room  without error management
+ * @param {*} collection_name 
+ * @param {*} roomcode 
+ * @returns 
+ */
+ const findOne = async (collection_name, roomcode) => {
+    let db = await connectDB()
+    let collection = db.collection(collection_name)
+    let result = await collection.find({ roomCode: roomcode }).toArray()
+    return result
+}
+
+/**
+ * create rooms  in  mongodb 
+ * @param {*} collection 
+ * @param {*} information 
+ * @returns 
+ */
+const createRoom = async (collection,information) => { 
+    let roomcode = information.roomCode
+    let idhall = information.idHall
+    if (!validateEmptyData(information)) {
+        if (roomcode.length === 0 || idhall.length === 0) {
+            throw new Error("roomcode and idHall are required for the room to be saved.")
+        }
+        result = await findOne(collection, roomcode)
+        if (result.length !== 0) {
+            throw new Error("The roomcode already exists, please enter a different one.")
+        }
+    }
+    let db = await connectDB()
+    let collectionone = db.collection(collection)
+    return await collectionone.insertOne(information)     
+    
+}
+
+/**
+ * it find rooms 
+ * @param {*} colletionName 
+ * @returns 
  */
 const getRoom = async (colletionName) => {
     let db = await connectDB()
     let coleccion = db.collection(colletionName)
-    let resultado = coleccion.find({}).toArray()
-    return resultado
+    let result = coleccion.find({}).toArray()
+    return result
 }
 
 /**
- * 
+ * this only find  one room 
+ * @param {*} colletionName 
+ * @param {*} code 
+ * @returns 
+ */
+ const getRoomcode = async (colletionName,code) => {
+    let result = await findOne(colletionName, code)
+    if (result.length === 0) {
+        throw new Error("The room does not exist")
+    }
+    return result
+}
+
+/**
+ *  update room  in mongodb using roomcode 
  * @param {*} collection 
  * @param {*} code 
  * @param {*} information 
  * @returns 
  */
 const updateRoom = async (collection, code, information) => {
+    let roomcode = information.roomCode
+    let idhall = information.idHall
+    if (!validateEmptyData(information)) {
+        if (roomcode.length === 0 || idhall.length === 0) {
+            throw new Error("roomcode and idHall are required for the room to be saved.")
+        }
+        result = await findOne(collection, roomcode)
+        if (result.length !== 0) {
+            throw new Error("The roomcode already exists, please enter a different one.")
+        }
+    }
     let db = await connectDB()
     let collectionone = db.collection(collection)
     let filter = {"roomCode": code}
@@ -51,9 +114,10 @@ const updateRoom = async (collection, code, information) => {
 
 
 /**
- * 
- * @param {json} filtro 
- * @returns Resultado de desactivar la carrera
+ *  delete room using roomcode
+ * @param {*} collection 
+ * @param {*} code 
+ * @returns 
  */
  const deleteRoom = async(collection,code) => { 
     let db = await connectDB()
@@ -65,60 +129,9 @@ const updateRoom = async (collection, code, information) => {
 }
 
 
-/**
- * 
- * @param {json} information 
- * 
- */
-const validarInfoCarrera = (information) => { 
-  let codigo = information["codigo"]
-  let nombre = information["nombre"]
-  let descripcion = information["descripcion"]
-
-  if (!(codigo.length >= 2 &&  codigo.length <= 10))  {    
-    throw new Error ("El código es obligatorio con mínimo 2 caracteres y máximo 10 caracteres")
-  }
-  if (!(nombre.length >= 5 &&  nombre.length <= 150))  {
-    throw new Error ("El nombre es obligatorio con mínimo 5 caracteres y máximo 150 caracteres")
-  }
-  if (!(descripcion.length >=0 && descripcion.length <= 500 ))  {
-    throw new Error ("La descripción de la carrera opcional, máximo 500 caracteres")
-  }
-}
-
-/**
- * 
- * @param {string} coderoom 
- * @returns {boolean} Si la carrera existe y está activa
- */
-
-
-/**
- * 
- * @param {string} documentoIdentidad 
- * @returns {boolean} Si el estudiante existe 
- */
-const existeEstudiante = async(documentoIdentidad) => {
-    let db = await connectDB()
-    let coleccion = db.collection(process.env.COLECCION_ESTUDIANTES)
-    let estudiantes = coleccion.find().project({ _id: 0, nro_identificacion: 1 })
-    let encontrado = false
-    await estudiantes.forEach((estudiante) => {
-        if(estudiante.nro_identificacion === documentoIdentidad){
-            encontrado = true
-        }
-    })
-    return encontrado
-}
-
-const validarNumeroIdentificacion = (jsonEstudiante) => {
-    if (!(jsonEstudiante["nro_identificacion"].length >= 8 && jsonEstudiante["nro_identificacion"].length <= 15)) {
-        throw new Error("El numero de identificacion debe tener minimo 8 y maximo 15 caracteres")
-    }
-}
-
 module.exports= {
     createRoom,
     getRoom,
+    getRoomcode,
     updateRoom,
     deleteRoom } 
