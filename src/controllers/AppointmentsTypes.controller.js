@@ -69,15 +69,16 @@ const CreateAppointmentsTypes = async (req, res) => {
 const UpdateAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
+        let information = req.body
         if((Object.keys(information).length !== 0)){
             response.ok = true
             response.message = "appointment type updating successfully"
             let _id = req.params.id
-            let information = req.body
             let result = await UpdateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
                 {_id}, information)
-            response.info = result
-            res.send(response)
+            response.info = result;
+            response.data = information;
+            res.send(response);
         } else {
             response.ok = false
             response.message = "Empty Body"

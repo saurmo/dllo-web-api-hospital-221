@@ -44,10 +44,10 @@ const ReadsPatients = async (req, res) => {
 const CreatePatients = async (req, res) => {
    let response = {}
    try {
+    let information = req.body
     if((Object.keys(information).length !== 0)){
         response.ok = true
         response.message = "Patients creating successfully"
-        let information = req.body
         await CreateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB, 
             information)
         res.send(response)
@@ -69,15 +69,16 @@ const CreatePatients = async (req, res) => {
 const UpdatePatients = async (req, res) => {
    let response = {}
    try {
+    let information = req.body
     if((Object.keys(information).length !== 0)){
         response.ok = true
         response.message = "Patients updating successfully"
         let _id = req.params.id
-        let information = req.body
         let result = await UpdateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB,
             {_id}, information)
-        response.info = result
-        res.send(response)
+        response.info = result;
+        response.data = information;
+        res.send(response);
     } else {
         response.ok = false
         response.message = "Empty Body"

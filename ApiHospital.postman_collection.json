@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "5dc8e30e-5958-4a87-8946-4323cd4223e1",
+		"name": "ApiHospital",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"idPatient\": \"65456\",\r\n    \"name\": \"pablo\",\r\n    \"lastname\": \"Ospina\",\r\n    \"blodType\": \"a+\",\r\n    \"cellphone\": \"61651561\",\r\n    \"address\": \"St. 50  \",\r\n    \"mail\": \"DavidOspina@gmail.com\",\r\n    \"gender\": \"MALE\",\r\n    \"idClinicHistory\": \"05\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Patients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Patients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Patients/627ed55c3db622e85532f2ba",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Patients",
+								"627ed55c3db622e85532f2ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"pediatrist\",\r\n    \"description\": \"ediatrics is the specialty of medical science concerned with the physical, mental, and social health of children from birth to young adulthood.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Patients/627ecee2cca4fa3428dfd3c2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Patients",
+								"627ecee2cca4fa3428dfd3c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Patients/627ed55c3db622e85532f2ba",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Patients",
+								"627ed55c3db622e85532f2ba"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment_type",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/AppointmentsTypes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"AppointmentsTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/AppointmentsTypes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"AppointmentsTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/AppointmentsTypes/627ef311a81c095cff38adce",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"AppointmentsTypes",
+								"627ef311a81c095cff38adce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/AppointmentsTypes/627ef2dea81c095cff38adcd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"AppointmentsTypes",
+								"627ef2dea81c095cff38adcd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/AppointmentsTypes/627ef2dea81c095cff38adcd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"AppointmentsTypes",
+								"627ef2dea81c095cff38adcd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n  \"idAppointments\": \"13\",\r\n  \"idPatient\": \"656\",\r\n  \"Nurse\": \"3213\",\r\n  \"Time\": \"30/10/2022\",\r\n  \"ConsultingRoom\": \"6\",\r\n  \"AppointmentType\": \"o789\"\r\n }\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Appointments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Appointments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Appointments/627eec56739b868fc6b451f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Appointments",
+								"627eec56739b868fc6b451f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"idAppointments\": \"13\",\r\n    \"idPatient\": \"656\",\r\n    \"Nurse\": \"3213\",\r\n    \"Time\": \"30/10/2022\",\r\n    \"ConsultingRoom\": \"6\",\r\n    \"AppointmentType\": \"o789\"\r\n }"
+						},
+						"url": {
+							"raw": "{{url}}/Appointments/627eec56739b868fc6b451f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Appointments",
+								"627eec56739b868fc6b451f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Appointments/627eec56739b868fc6b451f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Appointments",
+								"627eec56739b868fc6b451f8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
