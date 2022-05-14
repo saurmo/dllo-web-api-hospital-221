@@ -1,4 +1,6 @@
+// call the express bookstore
 const express = require('express')
+// call bookstore
 const {CreatePatients, 
     ReadPatients, 
     ReadsPatients,
@@ -10,7 +12,9 @@ const { verificarPeticion } = require('../middlewares/token.middleware')
 
 const { notFound } = require('../middlewares/404.middleware')
 
+//instanciar routers 
 const router = express.Router();
+//instanciar routers 
 const vs = "/api/v1"
 
 // Routes
@@ -20,4 +24,5 @@ router.get(vs + "/Patients", ReadsPatients)
     .put(vs + "/Patients/:id", UpdatePatients)
     .delete(vs +"/Patients/:id", DeletePatients)
 
+// export module
 module.exports = router
