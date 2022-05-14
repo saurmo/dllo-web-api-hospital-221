@@ -34,16 +34,21 @@ const createDocumentNutritionRegistry = async (collectionName, information) => {
  * @param {json} information {patientIdentification, roomCode, nutritionCode, comments(optional)}
  */
 const validateInformationToRegistry = async (information) => {
-    if (!(await pacienteExist(information.patientIdentification))) {
-        throw new Error("The patient identification doesn't exist in the database")
-    }
+    if (information && information.patientIdentification && information.roomCode && information.nutritionCode) {
 
-    if (!( await roomExist(information.roomCode))) {
-        throw new Error("The room code doesn't exist in the database")
-    }
+        if (!(await pacienteExist(information.patientIdentification))) {
+            throw new Error("The patient identification doesn't exist in the database")
+        }
 
-    if (!(await nutritionExist(information.nutritionCode))) {
-        throw new Error("The nutrition code doesn't exist in the database")
+        if (!( await roomExist(information.roomCode))) {
+            throw new Error("The room code doesn't exist in the database")
+        }
+
+        if (!(await nutritionExist(information.nutritionCode))) {
+            throw new Error("The nutrition code doesn't exist in the database")
+        }
+    }else{
+        throw new Error("The patient identification, the room code and the nutrition code are required")
     }
 }
 
@@ -95,7 +100,7 @@ const nutritionExist = async (information) => {
 /**
  * Read all the nutrition registries
  * @param {String} collectionName 
- * @returns 
+ * @returns {Array} 
  */
 const readDocumentsNutritionRegistry = async (collectionName) => {
     let db = await connectDB()
@@ -136,15 +141,27 @@ const readDocumentNutritionRegistry = async (id) => {
     return collection.findOne(id)
 }
 
+/**
+ * Update an existing nitrition registry
+ * @param {String} collectionName 
+ * @param {json} filter 
+ * @param {json} newInformation 
+ * @returns {json}
+ */
 const updateDocumentNutritionRegistry = async (collectionName, filter, newInformation) => {
     let db = await connectDB()
     let collection = db.collection(collectionName)
     getFilter(filter, newInformation)
     await validateInformationToRegistry(newInformation)
     let registry = await readDocumentNutritionRegistry(filter)
+
     if (!registry) {
         throw new Error("The registry doesn't exist in the database")
     }
+    if (newInformation.patientIdentification != registry.patientIdentification) {
+        throw new Error("You can't change the patient identification")
+    }
+
     return await collection.replaceOne(filter, newInformation)
 }
 
@@ -167,6 +184,12 @@ const getFilter = (filter, newDocument) => {
       }
 }
 
+/**
+ * Delete a nutrition registry 
+ * @param {String} collectionName 
+ * @param {json} filter 
+ * @returns {json} 
+ */
 const deleteDocumentNutritionRegistry = async (collectionName, filter) => {
     let db = await connectDB()
     let collection = db.collection(collectionName)
