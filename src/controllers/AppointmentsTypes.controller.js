@@ -1,3 +1,4 @@
+//call the controller at routers
 const {ReadDocAppointmentsTypes,
      ReadsDocAppointmentsTypes,
      CreateDocAppointmentsTypes,
@@ -5,6 +6,7 @@ const {ReadDocAppointmentsTypes,
      DeleteDocAppointmentsTypes
     } = require("../services/AppointmentsTypes.service")
 
+//  read appintments types
 const ReadAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
@@ -23,7 +25,7 @@ const ReadAppointmentsTypes = async (req, res) => {
         res.status(500).send(response)
     } 
 }
-
+//  read appintments types
 const ReadsAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
@@ -40,7 +42,7 @@ const ReadsAppointmentsTypes = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+//create appointments types
 const CreateAppointmentsTypes = async (req, res) => {
     let response = {}
 
@@ -65,7 +67,7 @@ const CreateAppointmentsTypes = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+//update appointments types
 const UpdateAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
@@ -93,7 +95,7 @@ const UpdateAppointmentsTypes = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+// Delete the appointment type
 const DeleteAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
@@ -111,7 +113,7 @@ const DeleteAppointmentsTypes = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+// export module to export the CRUD
 module.exports = {CreateAppointmentsTypes, 
     ReadAppointmentsTypes, 
     ReadsAppointmentsTypes,

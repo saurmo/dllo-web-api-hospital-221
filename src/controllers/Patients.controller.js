@@ -1,3 +1,4 @@
+//call the controller at routers
 const {ReadDocPatients,
     ReadsDocPatients,
     CreateDocPatients,
@@ -5,6 +6,7 @@ const {ReadDocPatients,
     DeleteDocPatients
    } = require("../services/Patients.service")
 
+//  read  patients   
 const ReadPatients = async (req, res) => {
    let response = {}
    try {
@@ -23,7 +25,7 @@ const ReadPatients = async (req, res) => {
        res.status(500).send(response)
    } 
 }
-
+// read patients
 const ReadsPatients = async (req, res) => {
    let response = {}
    try {
@@ -40,7 +42,7 @@ const ReadsPatients = async (req, res) => {
        res.status(500).send(response)
    }
 }
-
+// create patients
 const CreatePatients = async (req, res) => {
    let response = {}
    try {
@@ -65,7 +67,7 @@ const CreatePatients = async (req, res) => {
        res.status(500).send(response)
    }
 }
-
+// update patients
 const UpdatePatients = async (req, res) => {
    let response = {}
    try {
@@ -93,7 +95,7 @@ const UpdatePatients = async (req, res) => {
        res.status(500).send(response)
    }
 }
-
+// delete patients
 const DeletePatients = async (req, res) => {
    let response = {}
    try {
@@ -111,7 +113,7 @@ const DeletePatients = async (req, res) => {
        res.status(500).send(response)
    }
 }
-
+// export module to export the CRUD
 module.exports = {CreatePatients, 
    ReadPatients, 
    ReadsPatients,

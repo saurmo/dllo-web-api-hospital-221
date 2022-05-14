@@ -1,5 +1,7 @@
+//call the controller at routers
 const { ReadDocAppointments, ReadsDocAppointments, CreateDocAppointments, UpdateDocAppointments, DeleteDocAppointments } = require("../services/appointment.service")
 
+//  read dating types
 const ReadAppointments = async (req, res) => {
     let response = {}
     try {
@@ -18,7 +20,7 @@ const ReadAppointments = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+//  read dating types
 const ReadsAppointments = async (req, res) => {
     let response = {}
     try {
@@ -35,7 +37,7 @@ const ReadsAppointments = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+//creating citation types
 const CreateAppointments = async (req, res) => {
     let response = {}
     try {
@@ -60,7 +62,7 @@ const CreateAppointments = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+//update citation types
 const UpdateAppointments = async (req, res) => {
     let response = {}
     try {
@@ -88,7 +90,7 @@ const UpdateAppointments = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+// Delete the appointmentsType 
 const DeleteAppointments = async (req, res) => {
     let response = {}
     try {
@@ -106,7 +108,7 @@ const DeleteAppointments = async (req, res) => {
         res.status(500).send(response)
     }
 }
-
+// export module to export the CRUD
 module.exports = {
     CreateAppointments,
     ReadAppointments,
