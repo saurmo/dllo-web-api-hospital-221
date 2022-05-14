@@ -14,8 +14,10 @@ app.use(express.json())
 // app.use(cors())
 
 // Integrando el router con la app
-const router = require("./routers/facturacion.router")
-app.use(router)
+const facturationRouter = require("./routers/facturacion.router")
+const MedicalInstrumentsRouter = require("./routers/medical_instruments.router")
+app.use(facturationRouter);
+app.use(MedicalInstrumentsRouter);
 
 
 // Puerto donde se levanta el servidor web 
