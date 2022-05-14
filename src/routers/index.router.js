@@ -5,9 +5,6 @@ const router = express.Router()
 const routerConsultingRooms = require("./consultingRooms.router")
 
 
-
-
-
 router.use(routerConsultingRooms)
 
 module.exports = router

@@ -1,64 +1,123 @@
-const { leerDocumentos, agregarDocumento, modificarDocumento,
-    eliminarDocumento } = require('../services/mongodb.service');
+// Services import
+const consultingClinicHistoryServices = require('../services/clinicHistory.service')
+
 
 /**
 * 
 * @param {Request} req 
-* @param {Response} res 
+* @param {Response}res 
 */
+const createClinicHistory= async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Clinic History created successfully"
+      let information = req.body
+      await consultingClinicHistoryServices.createDocumentClinicHistory("clinicHistory", information)
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred creating the Clinic History"
+      response.info = error.message
+      res.status(500).send(response)
+  }
 
-const createLogin = async (req, res) => {
-    const response = await "aqui van todos los empleados"
-    console.log('Lista todos los empleados');
-    res.status(200).json(response)
-  };
+}
+
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const readClinicHistory = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Clinic History read successfully"
+      let _id = req.params["id"]
+      let result = await consultingClinicHistoryServices.readDocumentClinicHistory("clinicHistory",{ _id })
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred reading the Clinic History"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+
+}
+
 
 /**
 * 
 * @param {Request} req 
-* @param {Response} res 
+* @param {Response}res 
 */
+const readClinicHistorys = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Clinic History read successfully"
+      let result = await consultingClinicHistoryServices.readDocumentsClinicHistorys("clinicHistory")
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred reading the Clinic History"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
 
-const getLogin = async (req, res) => {
-    const response = await "aqui van todos los empleados"
-    console.log('Lista todos los empleados');
-    res.status(200).json(response)
-  };
 
 /**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-
-const deleteLogin = async (req, res) => {
-    const response = await "aqui van todos los empleados"
-    console.log('Lista todos los empleados');
-    res.status(200).json(response)
-  };
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const updateClinicHistory = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Clinic History updated successfully"
+      let _id = req.params["id"]
+      let information = req.body
+      let result = await consultingClinicHistoryServices.updateDocumentClinicHistory("clinicHistory", { _id }, information)
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred updating the Clinic History"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
 
 /**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+ const deleteClinicHistory = async (req, res) => {
+  let response = {}
+  try {
+      response.ok = true
+      response.message = "Clinic History deleted successfully"
+      let _id = req.params["id"]
+      let result = await consultingClinicHistoryServices.deleteDocumentClinicHistory("clinicHistory", { _id })
+      response.info = result
+      res.send(response)
+  } catch (error) {
+      console.log(error)
+      response.ok = false
+      response.message = "An error occurred deleting the Clinic History"
+      response.info = error.message
+      res.status(500).send(response)
+  }
+}
 
-const getLogins = async (req, res) => {
-    const response = await "aqui van todos los empleados"
-    console.log('Lista todos los empleados');
-    res.status(200).json(response)
-  };
-
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-*/
-
-const  updateLogin = async (req, res) => {
-    const response = await "aqui van todos los empleados"
-    console.log('Lista todos los empleados');
-    res.status(200).json(response)
-  };
-
-  module.exports = { createLogin, getLogin, deleteLogin, getLogins, updateLogin }
+module.exports = {createClinicHistory,readClinicHistory,readClinicHistorys,updateClinicHistory,deleteClinicHistory}  
