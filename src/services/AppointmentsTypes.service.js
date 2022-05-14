@@ -1,7 +1,8 @@
+// call the mongodb
 const { MongoClient, ObjectId } = require("mongodb");
-
+// instantiate the database
 const uri = process.env.URI_MONGODB;
-
+// creating a variable for mongodb and calling it later
 const client = new MongoClient(uri);
 
 const conectDB = async () => {
