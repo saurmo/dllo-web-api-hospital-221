@@ -8,7 +8,7 @@ const {
 /**
  * 
  * @param {Request} req 
- * @param {Repsonse}res 
+ * @param {Response}res 
  */
 const consultNutritionTypes = async (req, res) => {
 
@@ -32,7 +32,7 @@ const consultNutritionTypes = async (req, res) => {
 /**
  * 
  * @param {Request} req 
- * @param {Repsonse}res 
+ * @param {Response}res 
  */
 const consultOneNutritionType = async (req, res) => {
 
@@ -57,7 +57,7 @@ const consultOneNutritionType = async (req, res) => {
 /**
  * 
  * @param {Request} req 
- * @param {Repsonse}res 
+ * @param {Response}res 
  */
 const createNutritionType = async (req, res) => {
 
@@ -82,7 +82,7 @@ const createNutritionType = async (req, res) => {
 /**
  * 
  * @param {Request} req 
- * @param {Repsonse}res 
+ * @param {Response}res  
  */
 const updateNutritionType = async (req, res) => {
 
@@ -108,7 +108,7 @@ const updateNutritionType = async (req, res) => {
 /**
  * 
  * @param {Request} req 
- * @param {Repsonse}res 
+ * @param {Response}res 
  */
 const deleteNutritionType = async (req, res) => {
 
