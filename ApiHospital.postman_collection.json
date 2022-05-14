@@ -76,16 +76,21 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"pediatrist\",\r\n    \"description\": \"ediatrics is the specialty of medical science concerned with the physical, mental, and social health of children from birth to young adulthood.\"\r\n}"
+							"raw": "{\r\n    \"idPatient\": \"xd\",\r\n    \"name\": \"xd\",\r\n    \"lastname\": \"xd\",\r\n    \"blodType\": \"xd+\",\r\n    \"cellphone\": \"xd\",\r\n    \"address\": \"St. 50  \",\r\n    \"mail\": \"xd@gmail.com\",\r\n    \"gender\": \"xd\",\r\n    \"idClinicHistory\": \"xd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{url}}/Patients/627ecee2cca4fa3428dfd3c2",
+							"raw": "{{url}}/Patients/627ef536a81c095cff38add0",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"Patients",
-								"627ecee2cca4fa3428dfd3c2"
+								"627ef536a81c095cff38add0"
 							]
 						}
 					},
@@ -130,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n}",
+							"raw": "{\r\n    \"name\": \"nutritionist\",\r\n    \"description\": \"Nutritionists are healthcare professionals who educate, advise and guide patients on nutrition plans that help them maintain a healthy lifestyle.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -191,7 +196,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n}"
+							"raw": "{\r\n    \"name\": \"nutritionist\",\r\n    \"description\": \"Nutritionists are healthcare professionals who educate, advise and guide patients on nutrition plans that help them maintain a healthy lifestyle.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url}}/AppointmentsTypes/627ef2dea81c095cff38adcd",
@@ -306,7 +316,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n    \"idAppointments\": \"13\",\r\n    \"idPatient\": \"656\",\r\n    \"Nurse\": \"3213\",\r\n    \"Time\": \"30/10/2022\",\r\n    \"ConsultingRoom\": \"6\",\r\n    \"AppointmentType\": \"o789\"\r\n }"
+							"raw": " {\r\n    \"idAppointments\": \"13\",\r\n    \"idPatient\": \"656\",\r\n    \"Nurse\": \"3213\",\r\n    \"Time\": \"30/10/2022\",\r\n    \"ConsultingRoom\": \"6\",\r\n    \"AppointmentType\": \"o789\"\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url}}/Appointments/627eec56739b868fc6b451f8",
