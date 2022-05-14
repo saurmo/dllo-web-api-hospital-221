@@ -14,7 +14,7 @@ app.use(express.json())
 // app.use(cors())
 
 // Integrando el router con la app
-const router = require("./routers/facturacion.router")
+const router = require("./routers/medicaments.routers")
 app.use(router)
 
 
