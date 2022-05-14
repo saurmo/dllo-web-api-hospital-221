@@ -11,10 +11,10 @@ const app = express()
 app.use(express.json())
 
 // Aplicar middleware cors
-app.use(cors())
+//app.use(cors())
 
 // Integrando el router con la app
-const router = require("./routers/nutritionTypes.router")
+const router = require("./routers/index.router")
 app.use(router)
 
 
