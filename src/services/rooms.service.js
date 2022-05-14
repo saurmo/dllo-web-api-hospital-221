@@ -94,17 +94,6 @@ const getRoom = async (colletionName) => {
  * @returns 
  */
 const updateRoom = async (collection, code, information) => {
-    let roomcode = information.roomCode
-    let idhall = information.idHall
-    if (!validateEmptyData(information)) {
-        if (roomcode.length === 0 || idhall.length === 0) {
-            throw new Error("roomcode and idHall are required for the room to be saved.")
-        }
-        result = await findOne(collection, roomcode)
-        if (result.length !== 0) {
-            throw new Error("The roomcode already exists, please enter a different one.")
-        }
-    }
     let db = await connectDB()
     let collectionone = db.collection(collection)
     let filter = {"roomCode": code}
