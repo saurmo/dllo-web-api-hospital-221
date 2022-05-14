@@ -7,6 +7,7 @@ const uri = process.env.URI_MONGODB
 const client = new MongoClient(uri)
 
 /**
+ * Connect the client to the server
  * @returns 
  */
 const connectDB = async () => {
@@ -16,6 +17,7 @@ const connectDB = async () => {
 }
 
 /**
+ * Create a Clinic History
  * @param {*} collectionName 
  * @param {*} information
  * @returns x
@@ -27,6 +29,7 @@ const createDocumentClinicHistory = async (collectionName, information) => {
 }
 
 /**
+ * Read all the Clinic History
  * @param {*} collectionName 
  * @returns 
  */
@@ -37,6 +40,7 @@ const createDocumentClinicHistory = async (collectionName, information) => {
 }
 
 /**
+ * Read one Clinic History by id
  * @param {*} collectionName 
  * @param {*} id 
  * @returns 
@@ -54,10 +58,12 @@ const readDocumentClinicHistory = async (collectionName,filter) => {
  */
 const getFilter = (filter, newDocument, isConsult=false) => {
     if (isConsult) {
+        // When come from read
         if (filter && filter._id) {
           filter._id = new ObjectId(filter._id)
         } 
       }else {
+        // When come from update and delete
         if (filter && filter._id) {
           filter._id = new ObjectId(filter._id)
           if (newDocument) { 
@@ -70,6 +76,7 @@ const getFilter = (filter, newDocument, isConsult=false) => {
 }
 
 /**
+ * Update a Clinic History
  * @param {*} collectionName 
  * @param {*} filter 
  * @param {*} newDocument 
@@ -87,6 +94,7 @@ const updateDocumentClinicHistory = async (collectionName, filter, newDocument) 
   }
 
   /**
+   * Delete a Clinic History
    * @param {*} collectionName 
    * @param {*} filter 
    * @returns 
