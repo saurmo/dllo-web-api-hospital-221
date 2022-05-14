@@ -21,16 +21,13 @@ const ReadDocAppointments = async (collectionAppointments, Filterid ) => {
     let collection = db.collection(collectionAppointments)
     Filterid = Filterid ? Filterid : {}
     getFilterID(Filterid, null, true)
-    return collection.find().toArray()
+    return collection.find(Filterid).toArray()
 }
 
 const CreateDocAppointments = async (collectionAppointments, information) => {    
-    let db = await conectDB()
-    let collection = db.collection(collectionAppointments)
-    let idAppointmentType = information.idAppointmentType
-    let name = information.name
-    let description = information.description
-    return await collection.insertOne(information)
+  let db = await conectDB()
+  let collection = db.collection(collectionAppointments)
+  return await collection.insertOne(information)
 }
 
 const UpdateDocAppointments = async (collectionAppointments, Filterid, information) => {
