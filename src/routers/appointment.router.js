@@ -15,6 +15,6 @@ router.get(vs + "/Appointments", ReadsAppointments)
     .put(vs + "/Appointments/:id", UpdateAppointments)
     .delete(vs + "/Appointments/:id", DeleteAppointments)
 
-router.use(notFound)
+
 
 module.exports = router

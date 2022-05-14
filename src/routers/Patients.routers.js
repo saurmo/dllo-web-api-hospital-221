@@ -20,6 +20,4 @@ router.get(vs + "/Patients", ReadsPatients)
     .put(vs + "/Patients/:id", UpdatePatients)
     .delete(vs +"/Patients/:id", DeletePatients)
 
-router.use(notFound)
-
 module.exports = router

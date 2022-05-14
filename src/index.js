@@ -14,10 +14,12 @@ app.use(express.json())
 app.use(cors())
 
 // Integrando el router con la app
-const router = require("./routers/Patients.routers")
-const router = require("./routers/appointment.router")
-const router = require("./routers/AppointmentsTypes.router")
-app.use(router)
+const routerPatients = require("./routers/Patients.routers")
+const routerappointment = require("./routers/appointment.router")
+const routerAppointmentsTypes = require("./routers/AppointmentsTypes.router")
+app.use(routerPatients)
+app.use(routerAppointmentsTypes)
+app.use(routerappointment)
 
 
 // Puerto donde se levanta el servidor web 
