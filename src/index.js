@@ -16,7 +16,7 @@ app.use(express.json())
 // Integrando el router con la app
 const facturationRouter = require("./routers/facturacion.router")
 const MedicalInstrumentsRouter = require("./routers/medical_instruments.router")
-const MedicamentsRouter = require("./routers/medical_instruments.router")
+const MedicamentsRouter = require("./routers/medicaments.routers")
 
 app.use(facturationRouter);
 app.use(MedicalInstrumentsRouter);

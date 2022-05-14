@@ -11,11 +11,11 @@ const medicaments_controller = require('../controllers/medicaments.controller');
 
 const vs = "/api/v1"
 
-router.get(vs + '/medicaments/', medicaments_controller.getMedicamentsControllers);
+router.get(vs + '/medicaments', medicaments_controller.getMedicamentsControllers);
 router.get(vs + '/medicaments/:id', medicaments_controller.getMedicamentController);
-router.post(vs + '/medicaments/', medicaments_controller.createMedicamentController);
+router.post(vs + '/medicaments', medicaments_controller.createMedicamentController);
 router.put(vs + '/medicaments/:id', medicaments_controller.updateMedicamentController);
-router.delete(vs + '/medicaments/:id', medicaments_controller.deleteMedicament);
+router.delete(vs + '/medicaments/:id', medicaments_controller.deleteMedicamentController);
 
 //router.use(requestValid)
 

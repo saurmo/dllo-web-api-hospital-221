@@ -1,51 +1,51 @@
 const { response } = require('express');
-const { createMedicament, updateMedicament, deleteMedicament, getMedicaments, getMedicament } = require('../services/medicaments.mongodb.service');
+const { getFactures, createFacture, updateFacture, getFacture, deleteFacture } = require('../services/facture.mongodb.service');
 
-const getMedicamentsControllers = async (req, res) => {
+const getBills = async (req, res) => {
     let response = {}
     try {
         response.ok = true;
-        response.message = "Medicaments consulted correctly";
+        response.message = "Bills consulted correctly";
         // Consulta a la base de datos de usuarios
-        let result = await getMedicaments('medicamentos');
+        let result = await getFactures('facturacion');
         console.log(result);
         response.info = result;
         res.send(response);
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred consulting the Medicaments";
+        response.message = "An error has occurred consulting the bills";
         response.info = error;
         res.status(500).send(response);
     }
 }
 
-const getMedicamentController = async (req, res) => {
+const getBill = async (req, res) => {
     let response = {}
     try {
         let _id = req.params["id"];
         response.ok = true;
-        response.message = "Medicament consulted correctly";
-        let result = await getMedicament('medicamentos', { _id });
+        response.message = "Bill consulted correctly";
+        let result = await getFacture('facturacion', { _id });
         console.log(result);
         response.info = result;
         res.send(response);
 
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred consulting the medicament";
+        response.message = "An error has occurred consulting the bill";
         console.log(error);
         response.info = error;
         res.status(500).send(response);
     }
 }
 
-const createMedicamentController = async (req, res) => {
+const createBill = async (req, res) => {
     let response = {}
     try {
         response.ok = true;
-        response.message = "Medicament created correctly";
+        response.message = "Bill created correctly";
         let information = req.body;
-        let result = await createMedicament('medicamentos', information);
+        let result = await createFacture('facturacion', information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -53,20 +53,20 @@ const createMedicamentController = async (req, res) => {
 
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred creating the Medicaments";
+        response.message = "An error has occurred creating the bills";
         response.info = error;
         res.status(500).send(response);
     }
 }
 
-const updateMedicamentController = async (req, res) => {
+const updateBill = async (req, res) => {
     let response = {}
     try {
         let _id = req.params["id"];
         response.ok = true;
-        response.message = "Medicament updated successfully";
+        response.message = "Facture updated successfully";
         let information = req.body;
-        let result = await updateMedicament('medicamentos', { _id }, information);
+        let result = await updateFacture('facturacion', { _id }, information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -74,21 +74,21 @@ const updateMedicamentController = async (req, res) => {
 
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred updating the medicaments";
+        response.message = "An error has occurred updating the bills";
         console.log(error);
         response.info = error;
         res.status(500).send(response);
     }
 }
 
-const deleteMedicamentController = async (req, res) => {
+const deleteBill = async (req, res) => {
     let response = {}
     try {
         let _id = req.params["id"];
         response.ok = true;
-        response.message = "Medicament deleted successfully";
+        response.message = "Facture deleted successfully";
         let information = req.body;
-        let result = await deleteMedicament('medicamentos', {_id}, information);
+        let result = await deleteFacture('facturacion', {_id}, information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -96,7 +96,7 @@ const deleteMedicamentController = async (req, res) => {
 
     } catch (error) {
         response.ok = false;
-        response.message = "An error has occurred deleting the medicaments";
+        response.message = "An error has occurred deleting the bills";
         console.log(error);
         response.info = error;
         res.status(500).send(response);
@@ -104,9 +104,9 @@ const deleteMedicamentController = async (req, res) => {
 }
 
 module.exports = {
-    getMedicamentsControllers,
-    getMedicamentController,
-    createMedicamentController,
-    updateMedicamentController,
-    deleteMedicamentController
+    getBills,
+    getBill,
+    createBill,
+    updateBill,
+    deleteBill
 }
