@@ -43,13 +43,20 @@ const ReadsAppointmentsTypes = async (req, res) => {
 
 const CreateAppointmentsTypes = async (req, res) => {
     let response = {}
+
     try {
-        response.ok = true
-        response.message = "appointment type creating successfully"
         let information = req.body
-        await CreateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB, 
-            information)
-        res.send(response)
+        if((Object.keys(information).length !== 0)){
+            response.ok = true
+            response.message = "appointment type creating successfully"
+            await CreateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB, information)
+            res.send(response)
+        } else {
+            response.ok = false
+            response.message = "Empty Body"
+            response.info = null
+            res.status(500).send(response)
+        }
     } catch (error) {
         console.log(error)
         response.ok = false
@@ -62,14 +69,21 @@ const CreateAppointmentsTypes = async (req, res) => {
 const UpdateAppointmentsTypes = async (req, res) => {
     let response = {}
     try {
-        response.ok = true
-        response.message = "appointment type updating successfully"
-        let _id = req.params.id
-        let information = req.body
-        let result = await UpdateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
-            {_id}, information)
-        response.info = result
-        res.send(response)
+        if((Object.keys(information).length !== 0)){
+            response.ok = true
+            response.message = "appointment type updating successfully"
+            let _id = req.params.id
+            let information = req.body
+            let result = await UpdateDocAppointmentsTypes(process.env.COLLECTION_APPOINTMENT_TYPE_MONGODB,
+                {_id}, information)
+            response.info = result
+            res.send(response)
+        } else {
+            response.ok = false
+            response.message = "Empty Body"
+            response.info = null
+            res.status(500).send(response)
+        }
     } catch (error) {
         console.log(error)
         response.ok = false

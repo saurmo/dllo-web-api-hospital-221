@@ -39,12 +39,19 @@ const ReadsAppointments = async (req, res) => {
 const CreateAppointments = async (req, res) => {
     let response = {}
     try {
-        response.ok = true
-        response.message = "appointment type creating successfully"
-        let information = req.body
-        await CreateDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB,
-            information)
-        res.send(response)
+        if((Object.keys(information).length !== 0)){
+            response.ok = true
+            response.message = "appointment type creating successfully"
+            let information = req.body
+            await CreateDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB,
+                information)
+            res.send(response)
+        } else {
+            response.ok = false
+            response.message = "Empty Body"
+            response.info = null
+            res.status(500).send(response)
+        }
     } catch (error) {
         console.log(error)
         response.ok = false
@@ -57,14 +64,21 @@ const CreateAppointments = async (req, res) => {
 const UpdateAppointments = async (req, res) => {
     let response = {}
     try {
-        response.ok = true
-        response.message = "appointment type updating successfully"
-        let _id = req.params.id
-        let information = req.body
-        let result = await UpdateDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB,
-            { _id }, information)
-        response.info = result
-        res.send(response)
+        if((Object.keys(information).length !== 0)){
+            response.ok = true
+            response.message = "appointment type updating successfully"
+            let _id = req.params.id
+            let information = req.body
+            let result = await UpdateDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB,
+                { _id }, information)
+            response.info = result
+            res.send(response)
+        } else {
+            response.ok = false
+            response.message = "Empty Body"
+            response.info = null
+            res.status(500).send(response)
+        }
     } catch (error) {
         console.log(error)
         response.ok = false
@@ -80,7 +94,7 @@ const DeleteAppointments = async (req, res) => {
         response.ok = true
         response.message = "appointment type deleted successfully"
         let _id = req.params.id
-        let result = await DeleteDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB, { _id })
+        let result = await DeleteDocAppointments(process.env.COLLECTION_APPOINTMENTS_MONGODB, {_id})
         response.info = result
         res.send(response)
     } catch (error) {

@@ -44,12 +44,19 @@ const ReadsPatients = async (req, res) => {
 const CreatePatients = async (req, res) => {
    let response = {}
    try {
-       response.ok = true
-       response.message = "Patients creating successfully"
-       let information = req.body
-       await CreateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB, 
-           information)
-       res.send(response)
+    if((Object.keys(information).length !== 0)){
+        response.ok = true
+        response.message = "Patients creating successfully"
+        let information = req.body
+        await CreateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB, 
+            information)
+        res.send(response)
+    } else {
+        response.ok = false
+        response.message = "Empty Body"
+        response.info = null
+        res.status(500).send(response)
+    }
    } catch (error) {
        console.log(error)
        response.ok = false
@@ -62,14 +69,21 @@ const CreatePatients = async (req, res) => {
 const UpdatePatients = async (req, res) => {
    let response = {}
    try {
-       response.ok = true
-       response.message = "Patients updating successfully"
-       let _id = req.params.id
-       let information = req.body
-       let result = await UpdateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB,
-           {_id}, information)
-       response.info = result
-       res.send(response)
+    if((Object.keys(information).length !== 0)){
+        response.ok = true
+        response.message = "Patients updating successfully"
+        let _id = req.params.id
+        let information = req.body
+        let result = await UpdateDocPatients(process.env.COLLECTION_PATIENTS_MONGODB,
+            {_id}, information)
+        response.info = result
+        res.send(response)
+    } else {
+        response.ok = false
+        response.message = "Empty Body"
+        response.info = null
+        res.status(500).send(response)
+    }
    } catch (error) {
        console.log(error)
        response.ok = false
