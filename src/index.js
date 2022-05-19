@@ -28,7 +28,9 @@ const MedicamentsRouter = require("./routers/medicaments.routers")
 app.use(facturationRouter);
 app.use(MedicalInstrumentsRouter);
 app.use(MedicamentsRouter);
-const router = require("./routers/clinicHistory.router")
+const routerclinicHistory = require("./routers/clinicHistory.router")
+const router = require("./routers/index.router")
+app.use(routerclinicHistory)
 app.use(router)
 
 

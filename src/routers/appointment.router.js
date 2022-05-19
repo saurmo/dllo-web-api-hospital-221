@@ -4,6 +4,7 @@ const { CreateAppointments, ReadAppointments, ReadsAppointments, UpdateAppointme
 const { verificarPeticion } = require('../middlewares/token.middleware')
 
 const { notFound } = require('../middlewares/404.middleware')
+const express = require('express')
 
 //instanciar routers 
 const router = express.Router();
