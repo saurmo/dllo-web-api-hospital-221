@@ -28,6 +28,8 @@ const MedicamentsRouter = require("./routers/medicaments.routers")
 app.use(facturationRouter);
 app.use(MedicalInstrumentsRouter);
 app.use(MedicamentsRouter);
+const router = require("./routers/clinicHistory.router")
+app.use(router)
 
 
 // Puerto donde se levanta el servidor web 

@@ -1,3 +1,4 @@
+process.env.URI_MONGODB= "mongodb+srv://saurmo-udem:9nVhp5fsbdKQRBLf@clusterudem.cvtno.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 process.env.URI_MONGODB= "mongodb+srv://saurmo-udem:9nVhp5fsbdKQRBLf@clusterudem.cvtno.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 

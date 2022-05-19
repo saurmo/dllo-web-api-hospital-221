@@ -2,6 +2,8 @@
 const express = require('express')
 
 const router = express.Router()
+const routerConsultingRooms = require("./consultingRooms.router")
+const routerClinicHistories = require("./clinicHistory.router")
 
 const auth_ctr = require("../controllers/auth.controller")
 const { requestValid } = require('../middlewares/token.middleware')
@@ -22,6 +24,9 @@ router.get(`/`, (req, res)=>{
 router.use(nutritionRegistries)
 router.use(nutritionTypes)
 router.use(rooms)
+
+router.use(routerConsultingRooms)
+router.use(routerClinicHistories)
 
 router.use(notFound)
 
