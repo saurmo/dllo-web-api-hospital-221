@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 
 // Aplicar middleware cors
-//app.use(cors())
+app.use(cors())
 
 // Integrando el router con la app
 const routerPatients = require("./routers/Patients.routers")
