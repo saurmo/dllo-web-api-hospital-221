@@ -21,12 +21,20 @@ app.use(routerPatients)
 app.use(routerAppointmentsTypes)
 app.use(routerappointment)
 
+const facturationRouter = require("./routers/facturacion.router")
+const MedicalInstrumentsRouter = require("./routers/medical_instruments.router")
+const MedicamentsRouter = require("./routers/medicaments.routers")
+
+app.use(facturationRouter);
+app.use(MedicalInstrumentsRouter);
+app.use(MedicamentsRouter);
+
 
 // Puerto donde se levanta el servidor web 
 // Puerto donde esta escuchando la API
 const PORT = process.env.PORT
 
-// Levantar la API que estará escuchando en el PUERTO 3000
+// Levantar la API que estará escuchando en el PUERTO 3001
 // 1. Primer parametro: Puerto
 // 2. Segundo parametro: Callback - Funcion
 app.listen(PORT, () => {
