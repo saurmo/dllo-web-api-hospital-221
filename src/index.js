@@ -14,11 +14,11 @@ app.use(express.json())
 // app.use(cors())
 
 // Integrando el router con la app
-const facturationRouter = require("./routers/facturacion.router")
+const invoicesRouter = require("./routers/invoices.router")
 const MedicalInstrumentsRouter = require("./routers/medical_instruments.router")
 const MedicamentsRouter = require("./routers/medicaments.routers")
 
-app.use(facturationRouter);
+app.use(invoicesRouter);
 app.use(MedicalInstrumentsRouter);
 app.use(MedicamentsRouter);
 

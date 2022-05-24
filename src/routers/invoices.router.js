@@ -3,7 +3,7 @@ const express = require('express')
 
 const router = express.Router()
 
-const facture_controller = require('../controllers/facture.controller');
+const invoices_controller = require('../controllers/invoices.controller');
 
 // const auth_ctr = require("../controllers/auth.controller")
 // const { requestValid } = require('../middlewares/token.middleware')
@@ -11,11 +11,11 @@ const facture_controller = require('../controllers/facture.controller');
 
 const vs = "/api/v1"
 
-router.get(vs + '/factures/', facture_controller.getBills);
-router.get(vs + '/factures/:id', facture_controller.getBill);
-router.post(vs + '/factures/', facture_controller.createBill);
-router.put(vs + '/factures/:id', facture_controller.updateBill);
-router.delete(vs + '/factures/:id', facture_controller.deleteBill);
+router.get(vs + '/invoices/', invoices_controller.getBills);
+router.get(vs + '/invoices/:id', invoices_controller.getBill);
+router.post(vs + '/invoices/', invoices_controller.createBill);
+router.put(vs + '/invoices/:id', invoices_controller.updateBill);
+router.delete(vs + '/invoices/:id', invoices_controller.deleteBill);
 
 //router.use(requestValid)
 

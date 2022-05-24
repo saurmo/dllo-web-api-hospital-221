@@ -1,13 +1,13 @@
 const { response } = require('express');
-const { getFactures, createFacture, updateFacture, getFacture, deleteFacture } = require('../services/facture.mongodb.service');
+const { getInvoices, createInvoice, updateInvoice, getInvoice, deleteInvoice } = require('../services/facture.mongodb.service');
 
 const getBills = async (req, res) => {
     let response = {}
     try {
         response.ok = true;
-        response.message = "Bills consulted correctly";
+        response.message = "Invoices consulted correctly";
         // Consulta a la base de datos de usuarios
-        let result = await getFactures('facturacion');
+        let result = await getInvoices('facturacion');
         console.log(result);
         response.info = result;
         res.send(response);
@@ -25,7 +25,7 @@ const getBill = async (req, res) => {
         let _id = req.params["id"];
         response.ok = true;
         response.message = "Bill consulted correctly";
-        let result = await getFacture('facturacion', { _id });
+        let result = await getInvoice('facturacion', { _id });
         console.log(result);
         response.info = result;
         res.send(response);
@@ -45,7 +45,7 @@ const createBill = async (req, res) => {
         response.ok = true;
         response.message = "Bill created correctly";
         let information = req.body;
-        let result = await createFacture('facturacion', information);
+        let result = await createInvoice('facturacion', information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -66,7 +66,7 @@ const updateBill = async (req, res) => {
         response.ok = true;
         response.message = "Facture updated successfully";
         let information = req.body;
-        let result = await updateFacture('facturacion', { _id }, information);
+        let result = await updateInvoice('facturacion', { _id }, information);
         console.log(result);
         response.info = result;
         response.data = information;
@@ -88,7 +88,7 @@ const deleteBill = async (req, res) => {
         response.ok = true;
         response.message = "Facture deleted successfully";
         let information = req.body;
-        let result = await deleteFacture('facturacion', {_id}, information);
+        let result = await deleteInvoice('facturacion', {_id}, information);
         console.log(result);
         response.info = result;
         response.data = information;
