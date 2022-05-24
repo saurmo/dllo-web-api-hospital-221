@@ -1,5 +1,5 @@
 const { response } = require('express');
-const { getInvoices, createInvoice, updateInvoice, getInvoice, deleteInvoice } = require('../services/facture.mongodb.service');
+const { getInvoices, createInvoice, updateInvoice, getInvoice, deleteInvoice } = require('../services/invoice.mongodb.service');
 
 const getBills = async (req, res) => {
     let response = {}
