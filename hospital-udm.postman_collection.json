@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "ac5a179f-2c0d-45bb-ac67-fa6ac9b80b5a",
+		"name": "hospital-udm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "factures",
+			"item": [
+				{
+					"name": "factures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/factures",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"factures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFacture\": \"prueba con el merge\",\r\n    \"idMedicament\": \"pruebaM con el merge\",\r\n    \"idMedicalInstrument\": \"pruebaI con el merge\",\r\n    \"idPatient\": \"pruebaP con el merge\",\r\n    \"idclinicHistory\": \"pruebaC con el merge\",\r\n    \"accountStatus\": true,\r\n    \"total\": 1400\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/factures",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"factures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facture",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFacture\": \"prueba merge 2\",\r\n    \"idMedicament\": \"pruebaM merge 2\",\r\n    \"idMedicalInstrument\": \"pruebaI merge 2\",\r\n    \"idPatient\": \"pruebaP merge 2\",\r\n    \"idclinicHistory\": \"pruebaC merge 2\",\r\n    \"accountStatus\": true,\r\n    \"total\": 1300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/factures/627ef2ac0d49e94a72f02c61",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"factures",
+								"627ef2ac0d49e94a72f02c61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facture",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/factures/627ec1c716e7448f56f889a5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"factures",
+								"627ec1c716e7448f56f889a5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facture",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/factures/627ef2ac0d49e94a72f02c61",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"factures",
+								"627ef2ac0d49e94a72f02c61"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicaments",
+			"item": [
+				{
+					"name": "medicaments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/medicaments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medicaments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicament",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicamentName\":\"Suero\",\r\n    \"concentration\":\"2l\",\r\n    \"quantity\": 20,\r\n    \"price\": 25000,\r\n    \"activeBin\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/medicaments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medicaments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicament",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicamentName\":\"Suero update\",\r\n    \"concentration\":\"2L\",\r\n    \"quantity\": 20,\r\n    \"price\": 25000,\r\n    \"activeBin\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/medicaments/627f162adc7d1ad5204a9fbf",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medicaments",
+								"627f162adc7d1ad5204a9fbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicament",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/medicaments/627f162adc7d1ad5204a9fbf",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medicaments",
+								"627f162adc7d1ad5204a9fbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicament",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/medicaments/627f15fcdc7d1ad5204a9fbe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"medicaments",
+								"627f15fcdc7d1ad5204a9fbe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

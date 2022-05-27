@@ -1,4 +1,5 @@
 
+const { get } = require("express/lib/response");
 const { MongoClient, ObjectId } = require("mongodb");
 
 // Connection URI
@@ -23,7 +24,7 @@ const connectDB = async () => {
  * @param {*} filter 
  * @returns 
  */
-const getDocuments = async (collection, filter) => {
+const getFactures = async (collection, filter) => {
   let db = await connectDB()
   let collectionDB = db.collection(collection)
   filter = filter ? filter : {}
@@ -31,9 +32,10 @@ const getDocuments = async (collection, filter) => {
   return collectionDB.find(filter).toArray()
 }
 
-const getDocument = async (collection, filter) => {
+const getFacture = async (collection, filter) => {
   let db = await connectDB()
   let collectionDB = db.collection(collection)
+  getFilter(filter);
   return collectionDB.findOne(filter)
 }
 
@@ -65,24 +67,24 @@ const getFilter = (filter, newDocument, isHttpMethodGet = false) => {
 
 }
 
-const createDocument = async (collection, data) => {
+const createFacture = async (collection, data) => {
   let db = await connectDB()
   let collectionDB = db.collection(collection)
   return await collectionDB.insertOne(data)
 }
 
-const deleteDocument = async (collection, filter) => {
+const deleteFacture = async (collection, filter) => {
   getFilter(filter)
   let db = await connectDB()
   let collectionDB = db.collection(collection)
   return await collectionDB.deleteOne(filter)
 }
 
-const updateDocument = async (collection, filter, data) => {
+const updateFacture = async (collection, filter, data) => {
   getFilter(filter, data)
   let db = await connectDB()
   let collectionDB = db.collection(collection)
   return await collectionDB.replaceOne(filter, data)
 }
 
-module.exports = { createDocument, updateDocument, deleteDocument, getDocuments, getDocument }
+module.exports = { createFacture, updateFacture, deleteFacture, getFactures, getFacture }
