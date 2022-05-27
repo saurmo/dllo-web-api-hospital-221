@@ -3,9 +3,9 @@ class SocketHospital {
 
     constructor(io) {
         this.io = io
-        this.loadSocket()
         this.users=[]
         this.messages=[]
+        this.loadSocket()
     }
 
     loadSocket() {
@@ -20,14 +20,15 @@ class SocketHospital {
         socket.on("nuevo-usuario", (data) => {
             this.users.push(data)
             this.io.emit("usuarios-conectados", this.users )
+            this.io.emit("push-messages", this.messages )
         })
     }
 
     onMessages(socket) {
-        socket.on("onMessage", (data) => {
+        socket.on("on-message", (data) => {
             console.log(data);
             this.messages.push(data)
-            this.io.emit("pushMessages", this.messages )
+            this.io.emit("push-messages", this.messages )
         })
     }
 
