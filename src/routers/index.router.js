@@ -8,7 +8,7 @@ const routerClinicHistories = require("./clinicHistory.router")
 const auth_ctr = require("../controllers/auth/auth.controller")
 const { requestValid } = require('../middlewares/token.middleware')
 const { notFound } = require('../middlewares/404.middleware')
-//const clinicHistory_ctr = require("../controllers/clinicHistory.controller")
+const genericRouter = require("./generic.router")
 const nutritionRegistries = require('./nutrition.router')
 const nutritionTypes = require("./nutritionTypes.router.js")
 const rooms = require("./rooms.router.js")
@@ -27,6 +27,8 @@ router.use(rooms)
 
 router.use(routerConsultingRooms)
 router.use(routerClinicHistories)
+
+router.use(genericRouter)
 
 router.use(notFound)
 

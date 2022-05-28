@@ -1,6 +1,6 @@
 const { hashIsEqualsToData } = require("../../services/bcrypt.service")
 const { createToken } = require("../../services/jwt.service")
-const { getDocument } = require("../../services/mongodb.service")
+const { getDocument } = require("../../services/mongodb.generic.service")
 
 
 const login = async (req, res) => {
