@@ -25,5 +25,14 @@ const verifyToken = (token) => {
     }
 }
 
+/**
+ * 
+ * @param {*} token 
+ */
+ const decodeToken = (token) => {
+    
+    return jwt.verify(token, PRIVATE_KEY);
+}
 
-module.exports = { createToken, verifyToken }
+
+module.exports = { createToken, verifyToken, decodeToken }

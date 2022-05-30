@@ -25,7 +25,7 @@ const createNutritionRegistry = async (req, res) => {
         response.ok = false
         response.message = "An error occurred creating the registry"
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -48,7 +48,8 @@ const ReadNutritionRegistries = async (req, res) => {
         response.ok = false
         response.message = "An error occurred reading the registries"
         response.info = error.message
-        res.status(500).send(response)
+        //res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -74,7 +75,7 @@ const readNutritionRegistry = async (req, res) => {
         response.ok = false
         response.message = "An error occurred reading the registry"
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -100,7 +101,7 @@ const updateNutritionRegistry = async (req, res) => {
         response.ok = false
         response.message = "An error occurred updating the registry"
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 }
 
@@ -124,7 +125,7 @@ const deleteNutritionRegistry = async (req, res) => {
         response.ok = false
         response.message = "An error occurred deleting the registry"
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 }
 

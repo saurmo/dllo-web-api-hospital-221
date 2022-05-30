@@ -19,8 +19,11 @@ router.get(`/`, (req, res)=>{
     res.send("Proyecto de aula Hospital")
 })
 
-//router.use(requestValid)
 
+router.post(vs + "/login", auth_ctr.login);
+
+router.use(requestValid)
+router.get(vs + "/validate", auth_ctr.validateToken);
 router.use(nutritionRegistries)
 router.use(nutritionTypes)
 router.use(rooms)
