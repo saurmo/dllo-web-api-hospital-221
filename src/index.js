@@ -24,26 +24,9 @@ const io = new Server(serverHttp, {
     origin: "*"
   }
 });
-const socketHospital = new SocketHospital(io)
+new SocketHospital(io)
 
-// Integrando el router con la app
-const routerPatients = require("./routers/Patients.routers")
-const routerappointment = require("./routers/appointment.router")
-const routerAppointmentsTypes = require("./routers/AppointmentsTypes.router")
-app.use(routerPatients)
-app.use(routerAppointmentsTypes)
-app.use(routerappointment)
-
-const facturationRouter = require("./routers/facturacion.router")
-const MedicalInstrumentsRouter = require("./routers/medical_instruments.router")
-const MedicamentsRouter = require("./routers/medicaments.routers")
-
-app.use(facturationRouter);
-app.use(MedicalInstrumentsRouter);
-app.use(MedicamentsRouter);
-const routerclinicHistory = require("./routers/clinicHistory.router")
 const router = require("./routers/index.router");
-app.use(routerclinicHistory)
 app.use(router)
 
 

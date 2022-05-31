@@ -34,7 +34,7 @@ const getDocuments = async (collection, filter) => {
 const getDocument = async (collection, filter) => {
   let db = await connectDB()
   let collectionDB = db.collection(collection)
-  return collectionDB.findOne(filter)
+  return collectionDB.findOne(getFilter(filter, false, true))
 }
 
 /**

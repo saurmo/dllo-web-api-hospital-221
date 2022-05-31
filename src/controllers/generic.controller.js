@@ -1,5 +1,5 @@
 
-const {  createHash } = require('../services/bcrypt.service');
+const { createHash } = require('../services/bcrypt.service');
 const _service = require('../services/mongodb.generic.service');
 
 
@@ -13,20 +13,20 @@ const createDocument = async (req, res) => {
     let response = {}
     try {
         response.ok = true
-        response.message =  collection +": Creación exitosa."
-         let informacion = req.body
-         if (collection==='users') {
-             informacion.password = createHash(informacion.password)
-         }
+        response.message = collection + ": Creación exitosa."
+        let informacion = req.body
+        if (collection === 'users') {
+            informacion.password = createHash(informacion.password)
+        }
         let resultado = await _service.createDocument(collection, informacion)
-     
+
         response.info = resultado
         res.send(response)
     } catch (error) {
         console.log(error);
 
         response.ok = false
-        response.message = "Ha ocurrido un error insertando. " +collection
+        response.message = "Ha ocurrido un error insertando. " + collection
         response.info = error
         res.status(500).send(response)
     }
@@ -95,7 +95,7 @@ const getDocument = async (req, res) => {
     try {
         let _id = req.params["id"]
         response.ok = true
-        response.message =collection+ ": Consulta ejecutada."
+        response.message = collection + ": Consulta ejecutada."
         // COnsultar usuario en la base de datos
         let resultado = await _service.getDocument(collection, { _id })
         console.log(resultado);
@@ -121,7 +121,7 @@ const getDocuments = async (req, res) => {
     let response = {}
     try {
         response.ok = true
-        response.message = collection+ ": Consulta ejecutada."
+        response.message = collection + ": Consulta ejecutada."
         // Consulta a la base de datos de usuarios
         let resultado = await _service.getDocuments(collection)
         response.info = resultado

@@ -8,7 +8,7 @@ const PRIVATE_KEY = "jNf21HuI8UHkyijn00ND/nmAlK0eOBCQ9uC+D9a4ybeLk/lG0nn7zjJ34U0
  * @returns String
  */
 const createToken = (payload) => {
-    const token = jwt.sign(payload, PRIVATE_KEY, { expiresIn: "5m" })
+    const token = jwt.sign(payload, PRIVATE_KEY, { expiresIn: "1h" })
     return token
 }
 
@@ -19,11 +19,19 @@ const createToken = (payload) => {
  */
 const verifyToken = (token) => {
     try {
-        return Object.keys(jwt.verify(token, PRIVATE_KEY)).length>0
+        return Object.keys(jwt.verify(token, PRIVATE_KEY)).length > 0
+    } catch (error) {
+        return false
+    }
+}
+
+const decodeToken = (token) => {
+    try {
+        return jwt.verify(token, PRIVATE_KEY)
     } catch (error) {
         return false
     }
 }
 
 
-module.exports = { createToken, verifyToken }
+module.exports = { createToken, verifyToken, decodeToken }
