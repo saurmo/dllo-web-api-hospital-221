@@ -8,7 +8,7 @@ const PRIVATE_KEY = "jNf21HuI8UHkyijn00ND/nmAlK0eOBCQ9uC+D9a4ybeLk/lG0nn7zjJ34U0
  * @returns String
  */
 const createToken = (payload) => {
-    const token = jwt.sign(payload, PRIVATE_KEY, { expiresIn: "5m" })
+    const token = jwt.sign(payload, PRIVATE_KEY, { expiresIn: "100m" })
     return token
 }
 

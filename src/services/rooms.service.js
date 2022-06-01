@@ -45,9 +45,13 @@ const validateEmptyData = (data) => {
 const createRoom = async (collection,information) => { 
     let roomcode = information.roomCode
     let idhall = information.idHall
+    let roomNumber = information.roomNumber
     if (!validateEmptyData(information)) {
-        if (roomcode.length === 0 || idhall.length === 0) {
-            throw new Error("roomcode and idHall are required for the room to be saved.")
+        if (roomcode === undefined || idhall === undefined  || roomNumber === undefined) {
+            throw new Error("Room code, id Hall and room number are required for the room to be saved.")
+        }
+        if (roomcode.length === 0 || idhall.length === 0 || roomNumber.length === 0) {
+            throw new Error("Room code, id Hall and room number are required for the room to be saved.")
         }
         result = await findOne(collection, roomcode)
         if (result.length !== 0) {

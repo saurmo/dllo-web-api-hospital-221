@@ -24,7 +24,7 @@ const consultNutritionTypes = async (req, res) => {
         response.ok = false
         response.message = "An error has ocurred returning the data."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -49,7 +49,7 @@ const consultOneNutritionType = async (req, res) => {
         response.ok = false
         response.message = "An error has ocurred while returning the data."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -74,7 +74,7 @@ const createNutritionType = async (req, res) => {
         response.ok = false
         response.message = "An error has ocurred creating the data."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -100,7 +100,7 @@ const updateNutritionType = async (req, res) => {
         response.ok = false
         response.message = "An error has ocurred updating the data."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -126,7 +126,7 @@ const deleteNutritionType = async (req, res) => {
         response.ok = false
         response.message = "An error has ocurred deleting the data."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }

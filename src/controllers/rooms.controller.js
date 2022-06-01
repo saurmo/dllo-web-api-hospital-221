@@ -23,7 +23,7 @@ const insertRooms = async (req, res) => {
         response.ok = false
         response.message = "An error occurred adding the room."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -46,7 +46,7 @@ const insertRooms = async (req, res) => {
         response.ok = false
         response.message = "An error has occurred checking the room."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -70,7 +70,7 @@ const getRooms = async (req, res) => {
         response.ok = false
         response.message = "An error has occurred checking the rooms."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 
 }
@@ -94,7 +94,7 @@ const updateRooms = async (req, res) => {
         response.ok = false
         response.message = "An error occurred modifying the Room."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 }
 
@@ -117,7 +117,7 @@ const deleteRooms = async (req, res) => {
         response.ok = false
         response.message = "An error occurred removing the Room."
         response.info = error.message
-        res.status(500).send(response)
+        res.send(response)
     }
 }
 

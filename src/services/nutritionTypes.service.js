@@ -49,6 +49,9 @@ const createDocumentNutritionType = async (collectionName, data) => {
     let nutritionCode = data.nutritionCode
     let name = data.name
     if (!validateEmptyData(data)) {
+        if (nutritionCode === undefined || name === undefined) {
+            throw new Error("nutrition code and name are required for the nutrition type to be saved.")
+        }
         if (nutritionCode.length === 0 || name.length === 0) {
             throw new Error("nutrition code and name are required for the nutrition type to be saved.")
         }
